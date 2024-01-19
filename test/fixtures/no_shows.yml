@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  restaurant: one
+  customer: one
+  date_service: 2024-01-19
+
+two:
+  restaurant: two
+  customer: two
+  date_service: 2024-01-19
