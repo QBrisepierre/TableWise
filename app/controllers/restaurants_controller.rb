@@ -4,6 +4,10 @@ class RestaurantsController < ApplicationController
   def show
   end
 
+  def dashboard
+    
+  end
+
   def new
     @restaurant = Restaurant.new
   end
