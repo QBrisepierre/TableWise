@@ -21,7 +21,20 @@
         <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Company</a>
       </div>
       <div class="hidden lg:flex lg:flex-1 lg:justify-end">
-        <a href="#" class="text-sm font-semibold hover:opacity-75 leading-6 text-black">Se connecter <span aria-hidden="true">&rarr;</span></a>
+        <div class= "flex">
+          <% if user_signed_in? %>
+            <button data-action="click->dropdown#toggle"  type="button" class="relative flex max-w-xs items-center rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
+                  <span class="absolute -inset-1.5"></span>
+                  <span class="sr-only">Open user menu</span>
+                  <%= image_tag "ceo.jpg", class: "h-8 w-8 rounded-full", alt: "text" %>
+            </button>
+            <% else %>
+            <div class="hover:opacity-75">
+              <%= link_to "Se connecter", new_user_session_path, class: "text-sm font-semibold leading-6 text-black mr-1" %>
+              <span aria-hidden="true">&rarr;</span>
+            </div>
+            <% end %>
+        </div>
       </div>
     </nav>
     <!-- Mobile menu, show/hide based on menu open state. -->
