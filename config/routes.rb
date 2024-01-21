@@ -6,4 +6,9 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root "pages#home"
+  resources :restaurants, except: [ :index ] do
+    member do
+      get :dashboard
+    end
+  end
 end

@@ -1,0 +1,9 @@
+<div class="container py-24 mx-auto flex justify-center">
+  <%= simple_form_for(@restaurant) do |f| %>
+    <%= f.input :name, placeholder: "Four Season", label: "Nom" %>
+    <%= f.input :address, placeholder: "31 Av. George V, 75008 Paris", label: "Addresse" %>
+    <%= f.input :phone, placeholder: "06 06 06 06 06", label: "Téléphone" %>
+    <%= f.input :email, placeholder: "Four@season.com", label: "Email" %>
+    <%= f.submit class: "btn bg-primary" %>
+  <% end %>
+</div>
