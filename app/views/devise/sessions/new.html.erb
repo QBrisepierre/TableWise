@@ -1,0 +1,71 @@
+<!--
+  This example requires some changes to your config:
+  
+  ```
+  // tailwind.config.js
+  module.exports = {
+    // ...
+    plugins: [
+      // ...
+      require('@tailwindcss/forms'),
+    ],
+  }
+  ```
+-->
+<!--
+  This example requires updating your template:
+
+  ```
+  <html class="h-full bg-white">
+  <body class="h-full">
+  ```
+-->
+<div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
+  <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+    <%= image_tag "logo.png", alt: "text", class: "mx-auto h-10 w-auto" %>
+    <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Sign in to your account</h2>
+  </div>
+
+  <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+    <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), data: {turbo: false}) do |f| %>
+    <form class="space-y-6">
+      <label for="password" class="block text-sm font-medium leading-6 text-gray-900">Email</label>
+      <div class="mt-2">
+
+        <%= f.input :email,
+                required: false,
+                label: false,
+                autofocus: true,
+                input_html: { autocomplete: "email", class: "input" } %>
+      </div>
+      
+
+      <div>
+        <div class="flex items-center justify-between">
+           <label for="password" class="block text-sm font-medium leading-6 text-gray-900">Password</label>
+          <div class="text-sm">
+            <%= render "devise/shared/links" %>
+          </div>
+        </div>
+        <div class="mt-2">
+          <%= f.input :password,
+                required: false,
+                label: false,
+                input_html: { autocomplete: "current-password", class: "input" } %>
+          
+        </div>
+      </div>
+
+      <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+      <div class="mt-4">
+        <%= f.button :submit, "Log in", class:"flex w-full cursor-pointer justify-center rounded-md bg-primary px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" %>
+      </div>
+<% end %>
+    </form>
+
+    <p class="mt-10 text-center text-sm text-gray-500">
+      Not a member?
+      <a href="#" class="font-semibold leading-6 text-primary hover:opacity-90">Start a 14 day free trial</a>
+    </p>
+  </div>
+</div>
