@@ -1,11 +1,8 @@
 class RestaurantsController < ApplicationController
-  before_action :set_restaurant, only: [:show]
-
-  def show
-  end
+  before_action :set_restaurant, only: [:dashboard]
 
   def dashboard
-    
+    @customer = Customer.new
   end
 
   def new

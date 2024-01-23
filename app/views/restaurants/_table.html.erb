@@ -43,84 +43,46 @@
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
-                            <tr>
-                                <td class="px-4 py-4 text-sm font-medium text-gray-700  whitespace-nowrap">
-                                    <div class="inline-flex items-center gap-x-3">
-                                        <input type="checkbox" class="text-primary border-gray-300 rounded">
+                            <% @restaurant.no_shows.reverse.each do |no_show| %>
+                                <tr>
+                                    <td class="px-4 py-4 text-sm font-medium text-gray-700  whitespace-nowrap">
+                                        <div class="inline-flex items-center gap-x-3">
+                                            <input type="checkbox" class="text-primary border-gray-300 rounded">
 
-                                        <span>#3066</span>
-                                    </div>
-                                </td>
-                                <td class="px-4 py-4 text-sm text-gray-500 whitespace-nowrap">6 Jan, 2022</td>
-                                <td class="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
-                                    <div class="inline-flex items-center px-3 py-1 rounded-full gap-x-2 text-emerald-500 bg-emerald-100/60 ">
-                                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M10 3L4.5 8.5L2 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                        </svg>
-
-                                        <h2 class="text-sm font-normal">Paid</h2>
-                                    </div>
-                                </td>
-                                <td class="px-4 py-4 text-sm text-gray-500 whitespace-nowrap">
-                                    <div class="flex items-center gap-x-2">                                        <div>
-                                            <h2 class="text-sm font-medium text-gray-800 ">Arthur Melo</h2>
-                                            <p class="text-xs font-normal text-gray-600 ">authurmelo@example.com</p>
+                                            <span><%= no_show.id %></span>
                                         </div>
-                                    </div>
-                                </td>
-                                <td class="px-4 py-4 text-sm text-gray-500  whitespace-nowrap">06 06 06 06 06</td>
-                                <td class="px-4 py-4 text-sm whitespace-nowrap">
-                                    <div class="flex items-center gap-x-6">
-                                        <button class="text-gray-500 transition-colors duration-200 hover:text-primary focus:outline-none">
-                                            Edit
-                                        </button>
+                                    </td>
+                                    <td class="px-4 py-4 text-sm text-gray-500 whitespace-nowrap"><%= no_show.date_service %></td>
+                                    <td class="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
+                                        <div class="inline-flex items-center px-3 py-1 rounded-full gap-x-2 text-emerald-500 bg-emerald-100/60 ">
+                                            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M10 3L4.5 8.5L2 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                            </svg>
 
-                                        <button class="text-red-500 transition-colors duration-200 hover:text-red-600 focus:outline-none">
-                                            Supprimer
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td class="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
-                                    <div class="inline-flex items-center gap-x-3">
-                                        <input type="checkbox" class="text-primary border-gray-300 rounded">
-
-                                        <span>#3065</span>
-                                    </div>
-                                </td>
-                                <td class="px-4 py-4 text-sm text-gray-500  whitespace-nowrap">Jan 5, 2022</td>
-                                <td class="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
-                                    <div class="inline-flex items-center px-3 py-1 text-red-500 rounded-full gap-x-2 bg-red-100/60 ">
-                                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M9 3L3 9M3 3L9 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                        </svg>
-
-                                        <h2 class="text-sm font-normal">NoShow</h2>
-                                    </div>
-                                </td>
-                                <td class="px-4 py-4 text-sm text-gray-500 whitespace-nowrap">
-                                    <div class="flex items-center gap-x-2">
-                                        <div>
-                                            <h2 class="text-sm font-medium text-gray-800  ">Andi Lane</h2>
-                                            <p class="text-xs font-normal text-gray-600">andi@example.com</p>
+                                            <h2 class="text-sm font-normal">Paid</h2>
                                         </div>
-                                    </div>
-                                </td>
-                                <td class="px-4 py-4 text-sm text-gray-500 whitespace-nowrap">06 06 06 06 066</td>
-                                <td class="px-4 py-4 text-sm whitespace-nowrap">
-                                    <div class="flex items-center gap-x-6">
-                                        <button class="text-gray-500 transition-colors duration-200 hover:text-primary focus:outline-none">
-                                            Edit
-                                        </button>
+                                    </td>
+                                    <td class="px-4 py-4 text-sm text-gray-500 whitespace-nowrap">
+                                        <div class="flex items-center gap-x-2">                                        <div>
+                                                <h2 class="text-sm font-medium text-gray-800 "><%= no_show.customer.name %></h2>
+                                                <p class="text-xs font-normal text-gray-600 "><%= no_show.customer.email %></p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="px-4 py-4 text-sm text-gray-500  whitespace-nowrap"><%= no_show.customer.phone %></td>
+                                    <td class="px-4 py-4 text-sm whitespace-nowrap">
+                                        <div class="flex items-center gap-x-6">
+                                            <button class="text-gray-500 transition-colors duration-200 hover:text-primary focus:outline-none">
+                                                Edit
+                                            </button>
 
-                                        <button class="text-red-500 transition-colors duration-200 hover:text-red-600 focus:outline-none">
-                                            Supprimer
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
+                                            <button class="text-red-500 transition-colors duration-200 hover:text-red-600 focus:outline-none">
+                                                Supprimer
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            <% end %>
 
                         </tbody>
                     </table>
