@@ -9,7 +9,7 @@ class CustomersController < ApplicationController
     @no_show = NoShow.new(customer_id: @customer.id, restaurant_id: @restaurant.id, date_service: DateTime.now)
     @no_show.save
 
-    redirect_to dashboard_restaurant_path(current_user.restaurant_ids.first)
+    redirect_to dashboard_restaurant_path(current_user.restaurant.id)
   end
 
   private
