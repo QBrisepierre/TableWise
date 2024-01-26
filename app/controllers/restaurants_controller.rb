@@ -2,7 +2,20 @@ class RestaurantsController < ApplicationController
   before_action :set_restaurant, only: [:dashboard]
 
   def dashboard
+    if params[:query].present?
+      no_shows = @restaurant.customers
+      found_customer = Customer.search_by_email_and_phone(params[:query])
+      @customers = found_customer.select do |element|
+        no_shows.include?(element)
+      end
+    end
     @customer = Customer.new
+  end
+
+  def search
+    if params[:query].present?
+      @customers = Customer.search_by_email_and_phone(params[:query])
+    end
   end
 
   def new

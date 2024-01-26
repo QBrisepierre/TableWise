@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   resources :restaurants, except: [ :index ] do
     member do
       get :dashboard
+      get :search
     end
   end
   resources :customers, only: [ :create]

@@ -1,20 +1,19 @@
 <div data-controller="modal", style="height: 100vh">
-  <%= render "modal" %>
-
-  <div class="min-h-full max-h-full bg-gray-100" data-modal-target="blur">
+  <div class="min-h-full max-h-full bg-gray-100">
     <%= render "header" %>
     <div>
       <header class="bg-white shadow">
         <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8 flex justify-between">
-          <h1 class="text-3xl font-bold tracking-tight text-gray-900">Tableau de bord</h1>
+          <h1 class="text-3xl font-bold tracking-tight text-gray-900">Rechercher</h1>
           <a href="" data-action="click->modal#open" class="btn bg-primary">+ NoShow</a>
         </div>
       </header>
     </div>
     <main>
       <div class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
-        <%= render "table" %>
+        <%= render "search" %>
       </div>
     </main>
   </div>
+  
 </div>
