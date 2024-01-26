@@ -3,12 +3,23 @@
     <div class="mb-6 flex justify-end">
       <div>
         <%= form_with url: dashboard_restaurant_path, method: :get, class: "mt-6 flex max-w-sm gap-x-4" do %>
-          <%= text_field_tag :query,
-            params[:query],
-            class: "input mb-0 py-2",
-            placeholder: "Enter Email, Téléphone, Nom"
-          %>
-          <%= submit_tag "Chercher", class: "btn bg-secondary cursor-pointer" %>
+          <div class="relative flex items-center mt-2 md:w-96">
+              
+              <%= text_field_tag :query,
+                params[:query],
+                class: "input2 text-sm",
+                placeholder: "Enter Email, Téléphone, Nom"
+              %>
+                <%= button_tag(type: 'submit', name: "") do %>
+                  <span class="absolute grid w-5 h-5 top-2/4 right-3 -translate-y-2/4 place-items-center text-blue-gray-500">
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" aria-hidden="true" class="w-5 h-5">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                          d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"></path>
+                      </svg>
+                  </span>
+                <% end %>
+          </div>
         <% end %>
       </div>
     </div>

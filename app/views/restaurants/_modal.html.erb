@@ -15,24 +15,52 @@
 
           <div class="mt-4">
             <%= simple_form_for @customer do |f| %>
-            <label for="password" class="block text-sm font-medium leading-6 text-gray-900">Nom</label>
-            <div class = "mt-2">
-              <%= f.input :name, placeholder: "Andi Lane", label: false, input_html: { autocomplete: "name", class: "input" } %>
+            <div class="mt-4">
+              <label class="block text-sm font-medium leading-6 text-gray-900">Nom</label>
+              <div class="relative flex items-center mt-2">
+                <span class="absolute">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="0" stroke="currentColor" class="w-6 h-6 mx-3 text-gray-400">
+                      <path d="M7 8C7 5.23858 9.23858 3 12 3C14.7614 3 17 5.23858 17 8C17 10.7614 14.7614 13 12 13C9.23858 13 7 10.7614 7 8ZM12 11C13.6569 11 15 9.65685 15 8C15 6.34315 13.6569 5 12 5C10.3431 5 9 6.34315 9 8C9 9.65685 10.3431 11 12 11Z" fill="currentColor"></path>
+                      <path d="M6.34315 16.3431C4.84285 17.8434 4 19.8783 4 22H6C6 20.4087 6.63214 18.8826 7.75736 17.7574C8.88258 16.6321 10.4087 16 12 16C13.5913 16 15.1174 16.6321 16.2426 17.7574C17.3679 18.8826 18 20.4087 18 22H20C20 19.8783 19.1571 17.8434 17.6569 16.3431C16.1566 14.8429 14.1217 14 12 14C9.87827 14 7.84344 14.8429 6.34315 16.3431Z" fill="currentColor"></path>
+                  </svg>
+                </span>
+                <%= f.input :name, placeholder: "Andi Lane", label: false, input_html: { autocomplete: "name", class: "input3" } %>
+              </div>
             </div>
-            <label for="password" class="block text-sm font-medium leading-6 text-gray-900">Téléphone</label>
-            <div class="mt-2">
-              <%= f.input :phone, placeholder: "06 06 06 06 06", label: false, input_html: { autocomplete: "phone", class: "input" } %>
-            </div>
-            <label for="password" class="block text-sm font-medium leading-6 text-gray-900">Email</label>
-            <div class="mt-2">
-              <%= f.input :email, placeholder: "andi@example.com", label: false, input_html: { autocomplete: "email", class: "input" } %>
-            </div>
-            <div class="mt-8 flex items-center">
-              <button type="button" data-action="click->modal#close" class="me-1 w-full btn text-sm font-medium tracking-wide text-gray-700 capitalize transition-colors duration-300 transform border border-gray-200 rounded-md hover:bg-gray-100 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-40">
-                Cancel
-              </button>
-              <%= f.submit "Créer", class: "ms-1 btn bg-primary w-full cursor-pointer" %>
-            </div>
+
+              
+
+              <div class="mt-4">
+                <label class="block text-sm font-medium leading-6 text-gray-900">Téléphone</label>
+                <div class="relative flex items-center mt-2">
+                  <span class="absolute">
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="w-6 h-6 mx-3 text-gray-400">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
+                      </svg>
+                  </span>
+                  <%= f.input :phone, placeholder: "06 06 06 06 06", label: false, input_html: { autocomplete: "phone", class: "input3" } %>
+                </div>
+              </div>
+
+              <div class="mt-4">
+                <label class="block text-sm font-medium leading-6 text-gray-900">Email</label>
+                <div class="relative flex items-center mt-2">
+                  <span class="absolute">
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 mx-3 text-gray-400">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+                      </svg>
+                  </span>
+                  <%= f.input :email, placeholder: "andi@example.com", label: false, input_html: { autocomplete: "email", class: "input3" } %>
+                </div>
+              </div>
+              <div class="mt-8 flex items-center">
+                <button type="button" data-action="click->modal#close" class="me-1 w-full btn text-sm font-medium tracking-wide text-gray-700 capitalize transition-colors duration-300 transform border border-gray-200 rounded-md hover:bg-gray-100 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-40">
+                  Cancel
+                </button>
+                <%= f.submit "Créer", class: "ms-1 btn bg-primary w-full cursor-pointer" %>
+              </div>
             <% end %>
           </div>
         </div>

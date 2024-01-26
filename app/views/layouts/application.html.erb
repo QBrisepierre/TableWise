@@ -15,7 +15,7 @@
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     <%= render "shared/navbar" if current_page?(root_path)%>
-    <main class="container max-w-full">
+    <main class="container max-w-full" style="min-height: 100vh;">
       <%= yield %>
     </main>
   </body>
