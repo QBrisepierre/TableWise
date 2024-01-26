@@ -38,7 +38,7 @@ SimpleForm.setup do |config|
   # vertical forms
   #
   # vertical default_wrapper
-  config.wrappers :vertical_form, tag: 'div', class: 'mb-4' do |b|
+  config.wrappers :vertical_form, tag: 'div', class: 'mb-4 w-full' do |b|
     b.use :html5
     b.use :placeholder
     b.optional :maxlength
@@ -47,7 +47,7 @@ SimpleForm.setup do |config|
     b.optional :min_max
     b.optional :readonly
     b.use :label, class: 'block', error_class: 'text-red-500'
-    b.use :input, class: 'input', error_class: 'border-red-500', valid_class: 'border-green-400'
+    b.use :input, class: 'input2', error_class: 'border-red-500', valid_class: 'border-green-400'
     b.use :full_error, wrap_with: { tag: 'p', class: 'mt-2 text-red-500 text-xs italic' }
     b.use :hint, wrap_with: { tag: 'p', class: 'mt-2 text-grey-700 text-xs italic' }
   end
