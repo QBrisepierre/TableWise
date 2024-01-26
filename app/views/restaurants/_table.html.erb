@@ -1,13 +1,13 @@
-<section class="container px-4 mx-auto">
+<section class="container w-full">
   <div class="flex flex-col">
     <div class="mb-6 flex justify-end">
       <div>
-        <%= form_with url: dashboard_restaurant_path, method: :get, class: "mt-6 flex max-w-sm gap-x-4" do %>
-          <div class="relative flex items-center mt-2 md:w-96">
+        <%= form_with url: dashboard_restaurant_path, method: :get, class: "flex max-w-sm gap-x-4" do %>
+          <div class="relative flex items-center md:w-96">
               
               <%= text_field_tag :query,
                 params[:query],
-                class: "input2 text-sm",
+                class: "input text-sm",
                 placeholder: "Enter Email, Téléphone, Nom"
               %>
                 <%= button_tag(type: 'submit', name: "") do %>
