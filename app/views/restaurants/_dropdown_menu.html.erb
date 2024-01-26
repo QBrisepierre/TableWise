@@ -13,7 +13,7 @@
 
                <hr class="border-gray-200">
               
-              <%= link_to destroy_user_session_path, data: {turbo_method: :delete} do %>
+              <%= link_to destroy_user_session_path do %>
                 <div role="menuitem"
                   class="flex w-full cursor-pointer select-none items-center gap-2 px-3 pt-[9px] pb-2 text-start leading-tight outline-none transition-all hover:bg-gray-200 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
                   <svg class="w-5 h-5 mx-1 fill-black" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -26,7 +26,19 @@
                 </div>
               <% end %>
 
-              <%= link_to destroy_user_session_path, data: {turbo_method: :delete} do %>
+              <%= link_to dashboard_restaurant_path(current_user.restaurant.id) do %>
+                <div role="menuitem"
+                  class="flex w-full cursor-pointer select-none items-center gap-2 px-3 pt-[9px] pb-2 text-start leading-tight outline-none transition-all hover:bg-gray-200 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+                  <svg class="w-5 h-5 mx-1 fill-black" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 19H3C1.89543 19 1 18.1046 1 17V16H3V7C3 5.89543 3.89543 5 5 5H19C20.1046 5 21 5.89543 21 7V16H23V17C23 18.1046 22.1046 19 21 19ZM5 7V16H19V7H5Z" fill="currentColor"></path>
+                </svg>
+                  <p class="block font-sans text-sm antialiased font-medium leading-normal text-inherit">
+                    Tableau de bord
+                  </p>
+                </div>
+              <% end %>
+
+              <%= link_to destroy_user_session_path do %>
                 <div role="menuitem"
                   class="flex w-full cursor-pointer select-none items-center gap-2 px-3 pt-[9px] pb-2 text-start leading-tight outline-none transition-all hover:bg-gray-200 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
                   <svg class="w-5 h-5 mx-1 fill-black" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
