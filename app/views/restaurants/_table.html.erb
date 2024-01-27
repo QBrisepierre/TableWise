@@ -1,6 +1,32 @@
 <section class="container w-full">
   <div class="flex flex-col">
-    <div class="mb-6 flex justify-end">
+    <div class="mb-6 flex justify-between">
+
+      <div class= "flex space-x-4 items-center">
+        <div class="inline-flex items-center px-3 py-1 rounded-full gap-x-2 text-yellow-500 bg-yellow-100/60 ">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M9 3L3 9M3 3L9 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <h2 class="text-sm font-normal">NoShow < 3 </h2>
+        </div>
+
+        <div class="inline-flex items-center px-3 py-1 rounded-full gap-x-2 text-orange-500 bg-orange-100/60 ">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M9 3L3 9M3 3L9 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <h2 class="text-sm font-normal">NoShow < 6</h2>
+        </div>
+
+        <div class="inline-flex items-center px-3 py-1 rounded-full gap-x-2 text-red-500 bg-red-100/60 ">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M9 3L3 9M3 3L9 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <h2 class="text-sm font-normal">NoShow</h2>
+        </div>
+
+      </div>
+
+
       <div>
         <%= form_with url: dashboard_restaurant_path, method: :get, class: "flex max-w-sm gap-x-4" do %>
           <div class="relative flex items-center md:w-96">
@@ -36,16 +62,13 @@
                     <td class="px-4 py-4 text-sm font-medium text-gray-700  whitespace-nowrap">
                       <div class="inline-flex items-center gap-x-3">
                         <input type="checkbox" class="text-primary border-gray-300 rounded">
-                        <span>#<%= customer.id %></span>
+                        <span>#<%= @count - 1 %></span>
+                        <% @count -= 1 %>
                       </div>
                     </td>
                     <td class="px-4 py-4 text-sm text-gray-500 whitespace-nowrap"><%= customer.no_shows.last.date_service %></td>
                     <td class="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
-                      <div class="inline-flex items-center px-3 py-1 rounded-full gap-x-2 text-red-500 bg-red-100/60 ">
-                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M9 3L3 9M3 3L9 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                        <h2 class="text-sm font-normal">NoShow</h2>
+                      <%= render "badge", customer: customer %>
                       </div>
                     </td>
                     <td class="px-4 py-4 text-sm text-gray-500 whitespace-nowrap">
@@ -73,22 +96,19 @@
             <% else %>
 
               <tbody class="bg-white divide-y divide-gray-200">
-                <% @restaurant.no_shows.reverse.each do |no_show| %>
+                <% @no_shows.reverse.each do |no_show| %>
                   <tr>
                     <td class="px-4 py-4 text-sm font-medium text-gray-700  whitespace-nowrap">
                       <div class="inline-flex items-center gap-x-3">
                         <input type="checkbox" class="text-primary border-gray-300 rounded">
-                        <span>#<%= no_show.id %></span>
+                        <span>#<%= @count - 1 %></span>
+                        <% @count -= 1 %>
                       </div>
                     </td>
                     <td class="px-4 py-4 text-sm text-gray-500 whitespace-nowrap"><%= no_show.date_service %></td>
                     <td class="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
-                      <div class="inline-flex items-center px-3 py-1 rounded-full gap-x-2 text-red-500 bg-red-100/60 ">
-                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M9 3L3 9M3 3L9 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                        <h2 class="text-sm font-normal">NoShow</h2>
-                      </div>
+                      <% customer = Customer.find(no_show.customer_id) %>
+                      <%= render "badge", customer: customer %>
                     </td>
                     <td class="px-4 py-4 text-sm text-gray-500 whitespace-nowrap">
                       <div>

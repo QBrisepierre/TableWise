@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="modal"
 export default class extends Controller {
-  static targets = ["modal", "blur"]
+  static targets = ["modal", "blur", "phone"]
 
   connect(){
     console.log(this.Target)
@@ -20,4 +20,5 @@ export default class extends Controller {
     this.blurTarget.classList.remove("blur-sm", "brightness-50", "overflow-hidden")
     document.body.style.overflow = 'auto';
   }
+
 }
