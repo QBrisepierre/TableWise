@@ -66,7 +66,6 @@
                         <% @count -= 1 %>
                       </div>
                     </td>
-                    <td class="px-4 py-4 text-sm text-gray-500 whitespace-nowrap"><%= customer.no_shows.last.date_service %></td>
                     <td class="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
                       <%= render "badge", customer: customer %>
                       </div>
@@ -81,6 +80,9 @@
                     <td class="px-4 py-4 text-sm text-gray-500  whitespace-nowrap"><%= customer.phone %></td>
                     <td class="px-4 py-4 text-sm whitespace-nowrap">
                       <div class="flex items-center gap-x-6">
+                        <button class="text-gray-500 transition-colors duration-200 hover:text-primary focus:outline-none">
+                          hisorique
+                        </button>
                         <button class="text-gray-500 transition-colors duration-200 hover:text-primary focus:outline-none">
                           Edit
                         </button>
@@ -105,7 +107,6 @@
                         <% @count -= 1 %>
                       </div>
                     </td>
-                    <td class="px-4 py-4 text-sm text-gray-500 whitespace-nowrap"><%= no_show.date_service %></td>
                     <td class="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
                       <% customer = Customer.find(no_show.customer_id) %>
                       <%= render "badge", customer: customer %>
@@ -120,6 +121,9 @@
                     <td class="px-4 py-4 text-sm text-gray-500  whitespace-nowrap"><%= no_show.customer.phone %></td>
                     <td class="px-4 py-4 text-sm whitespace-nowrap">
                       <div class="flex items-center gap-x-6">
+                        <button class="text-gray-500 transition-colors duration-200 hover:text-primary focus:outline-none">
+                          hisorique
+                        </button>
                         <button class="text-gray-500 transition-colors duration-200 hover:text-primary focus:outline-none">
                           Edit
                         </button>

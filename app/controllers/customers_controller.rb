@@ -2,19 +2,20 @@ class CustomersController < ApplicationController
 
   def create
     @customer = Customer.new(customer_params)
+    
+    phone = customer_params["phone"].gsub(/(?<=\d{2})(\d{2})/, ' \1')
+    @customer.phone = phone
     if @customer.valid?
-      phone = customer_params["phone"].gsub(/(?<=\d{2})(\d{2})/, ' \1')
-      @customer.phone = phone
       @customer.save
     else
       search = @customer.errors.messages.first[0].to_s
-      phone = customer_params["phone"].gsub(/(?<=\d{2})(\d{2})/, ' \1')
       @customer = Customer.find_by(phone: phone) if search == 'phone'
     end
-
     @restaurant = Restaurant.find_by(user_id: current_user.id)
 
-    @no_show = NoShow.new(customer_id: @customer.id, restaurant_id: @restaurant.id, date_service: DateTime.now)
+    @date = Date.parse(params[:date])
+
+    @no_show = NoShow.new(customer_id: @customer.id, restaurant_id: @restaurant.id, date_service: @date)
     @no_show.save
 
     redirect_to dashboard_restaurant_path(current_user.restaurant.id)
