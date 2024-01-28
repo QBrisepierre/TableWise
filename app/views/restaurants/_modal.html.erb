@@ -55,6 +55,18 @@
                   <%= f.input :email, placeholder: "andi@example.com", label: false, input_html: { autocomplete: "email", class: "input3" } %>
                 </div>
               </div>
+
+              <div class="mt-4">
+                <label class="block text-sm font-medium leading-6 text-gray-900">Date de NoShow</label>
+                <div class="relative flex items-center mt-2">
+                  <span class="absolute">
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 mx-3 text-gray-400">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M19 4h-1V3c0-.55-.45-1-1-1s-1 .45-1 1v1H8V3c0-.55-.45-1-1-1s-1 .45-1 1v1H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 15c0 .55-.45 1-1 1H6c-.55 0-1-.45-1-1V9h14v10zM7 11h2v2H7zm4 0h2v2h-2zm4 0h2v2h-2z" />
+                      </svg>
+                  </span>
+                   <%= text_field_tag :date, params[:date], 'data-controller': "datepicker", class: "input3", placeholder: "2024-1-31"  %>
+                </div>
+              </div>
               <div class="mt-8 flex items-center">
                 <button type="button" data-action="click->modal#close" class="me-1 w-full btn text-sm font-medium tracking-wide text-gray-700 capitalize transition-colors duration-300 transform border border-gray-200 rounded-md hover:bg-gray-100 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-40">
                   Cancel
