@@ -9,7 +9,7 @@ class CustomersController < ApplicationController
     else
       search = @customer.errors.messages.first[0].to_s
       phone = customer_params["phone"].gsub(/(?<=\d{2})(\d{2})/, ' \1')
-      search == 'phone' ? @customer = Customer.find_by(phone: phone) : @customer = Customer.find_by(email: customer_params["email"])
+      @customer = Customer.find_by(phone: phone) if search == 'phone'
     end
 
     @restaurant = Restaurant.find_by(user_id: current_user.id)
