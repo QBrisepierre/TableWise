@@ -3,6 +3,8 @@ class CustomersController < ApplicationController
   def create
     @customer = Customer.new(customer_params)
     if @customer.valid?
+      phone = customer_params["phone"].gsub(/(?<=\d{2})(\d{2})/, ' \1')
+      @customer.phone = phone
       @customer.save
     else
       search = @customer.errors.messages.first[0].to_s

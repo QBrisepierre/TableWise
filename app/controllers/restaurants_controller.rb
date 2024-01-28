@@ -27,7 +27,11 @@ class RestaurantsController < ApplicationController
     end
     sum = 0
     all.each {|a| sum += a}
-    @fiability = (sum.fdiv(@restaurant.no_shows.count) * 100).to_i
+    if sum > 0 || @restaurant.no_shows.count > 0
+      @fiability = (sum.fdiv(@restaurant.no_shows.count) * 100).to_i
+    else
+      @fiability = 0
+    end
 
     unless @restaurant.no_shows.empty?
       if @no_shows_this_month.count > @no_shows_last_month.count &&  @no_shows_last_month.count > 0
