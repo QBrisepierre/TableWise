@@ -38,7 +38,7 @@ SimpleForm.setup do |config|
   # vertical forms
   #
   # vertical default_wrapper
-  config.wrappers :vertical_form, tag: 'div', class: 'mb-4 w-full' do |b|
+  config.wrappers :vertical_form, tag: 'div', class: 'w-full' do |b|
     b.use :html5
     b.use :placeholder
     b.optional :maxlength

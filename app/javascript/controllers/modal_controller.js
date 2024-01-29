@@ -22,17 +22,4 @@ export default class extends Controller {
     document.body.style.overflow = 'auto';
   }
 
-  openModalHistory(){
-    event.preventDefault();
-    this.modalHistoryTarget.classList.remove("hidden")
-
-    document.body.style.overflow = 'hidden';
-  }
-
-  closeModalHistory() {
-    this.modalHistoryTarget.classList.add("hidden")
-
-    document.body.style.overflow = 'auto';
-  }
-
 }
