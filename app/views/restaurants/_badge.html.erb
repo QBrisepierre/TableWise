@@ -1,4 +1,4 @@
-<% no_shows_by_restaurant = customer.no_shows.select{ |n| n.restaurant_id == @restaurant.id} %>
+<% no_shows_by_restaurant = find_noshows_by_restaurant(customer) %>
 <% if no_shows_by_restaurant.count < 3 %>
   <div class="inline-flex items-center px-3 py-1 rounded-full gap-x-2 text-yellow-500 bg-yellow-100/60 ">
     <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
