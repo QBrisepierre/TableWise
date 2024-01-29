@@ -58,7 +58,7 @@
 
               <tbody class="bg-white divide-y divide-gray-200">
                 <% @customers.each do |customer| %>
-                <% no_shows_by_restaurant = customer.no_shows.select{ |n| n.restaurant_id == @restaurant.id} %>
+                <% no_shows_by_restaurant = find_noshows_by_restaurant(customer) %>
                   <tr>
                     <td class="px-4 py-4 text-sm font-medium text-gray-700  whitespace-nowrap">
                       <div class="inline-flex items-center gap-x-3">
@@ -134,7 +134,6 @@
 
                                       </div>
                                     <ol class="relative border-s border-gray-200 h-full">
-                                      <% no_shows_by_restaurant = no_shows_by_restaurant.sort_by {|d| d.date_service} %>
                                       <li class="mb-10 ms-6">            
                                             <span class="absolute flex items-center justify-center w-6 h-6 bg-yellow-100 rounded-full -start-3 ring-8 ring-white">
                                                 <svg class="w-2.5 h-2.5 text-primary" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
@@ -189,7 +188,8 @@
                       </div>
                     </td>
                     <td class="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
-                      <% customer = Customer.find(no_show.customer_id) %>
+                      <% customer = find_customer(no_show.customer_id) %>
+                      <% no_shows_by_restaurant = find_noshows_by_restaurant(customer) %>
                       <%= render "badge", customer: customer %>
                     </td>
                     <td class="px-4 py-4 text-sm text-gray-500 whitespace-nowrap">
@@ -202,7 +202,6 @@
                     <td class="px-4 py-4 text-sm text-gray-500  whitespace-nowrap"><%= no_show.customer.phone %></td>
                     <td class="px-4 py-4 text-sm whitespace-nowrap">
                       <div class="flex items-center gap-x-6">
-                        <% no_shows_by_restaurant = customer.no_shows.select{ |n| n.restaurant_id == @restaurant.id} %>
                         <div data-controller="my-modal">
                           <button class="text-gray-500 transition-colors duration-200 hover:text-primary focus:outline-none" 
                              data-action="click->my-modal#openModal">
@@ -256,7 +255,6 @@
 
                                       </div>
                                     <ol class="relative border-s border-gray-200 h-full">
-                                      <% no_shows_by_restaurant = no_shows_by_restaurant.sort_by {|d| d.date_service} %>
                                       <li class="mb-10 ms-6">            
                                             <span class="absolute flex items-center justify-center w-6 h-6 bg-yellow-100 rounded-full -start-3 ring-8 ring-white">
                                                 <svg class="w-2.5 h-2.5 text-primary" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">

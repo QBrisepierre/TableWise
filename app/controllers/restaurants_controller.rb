@@ -1,5 +1,6 @@
 class RestaurantsController < ApplicationController
   before_action :set_restaurant, only: [:dashboard]
+  helper_method :find_customer, :find_noshows_by_restaurant
 
   def dashboard
     # If searching
@@ -48,6 +49,16 @@ class RestaurantsController < ApplicationController
     # Create new no_shows for opening modal
     @customer = Customer.new
   end
+
+  def find_customer(customer)
+    Customer.find(customer)
+  end
+
+  def find_noshows_by_restaurant(customer)
+    no_shows_by_restaurant = customer.no_shows.select{ |n| n.restaurant_id == @restaurant.id}
+    no_shows_by_restaurant.sort_by {|d| d.date_service}.reverse
+  end
+
 
   def search
     if params[:query].present?
