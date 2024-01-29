@@ -1,5 +1,5 @@
 <div data-controller="modal", style="min-height: 100vh">
-  <%= render "modal" %>
+  <%= render "modal_noshow" %>
 
   <div class="min-h-full bg-gray-100" data-modal-target="blur">
     <%= render "header" %>
@@ -7,7 +7,7 @@
       <header class="bg-white shadow">
         <div class="max-w-full px-4 py-6 sm:px-6 lg:px-8 flex justify-between">
           <h1 class="text-3xl font-bold tracking-tight text-gray-900">Tableau de bord</h1>
-          <a href="" data-action="click->modal#open" class="btn bg-primary">+ Ajouter un NoShow</a>
+          <a href="" data-action="click->modal#openModalNoShow" class="btn bg-primary">+ Ajouter un NoShow</a>
         </div>
       </header>
     </div>
