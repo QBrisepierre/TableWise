@@ -2,22 +2,36 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="modal"
 export default class extends Controller {
-  static targets = ["modal", "blur", "phone"]
+  static targets = ["modalNoshow", "blur", "modalHistory"]
+  static values = { index: String }
 
   connect(){
-    console.log(this.Target)
+    console.log(this.indexValue)
   }
 
-  open() {
+  openModalNoShow() {
     event.preventDefault();
-    this.modalTarget.classList.remove("hidden")
+    this.modalNoshowTarget.classList.remove("hidden")
     this.blurTarget.classList.add("blur-sm", "brightness-50")
     document.body.style.overflow = 'hidden';
   }
 
-  close() {
-    this.modalTarget.classList.add("hidden")
+  closeModalNoShow() {
+    this.modalNoshowTarget.classList.add("hidden")
     this.blurTarget.classList.remove("blur-sm", "brightness-50", "overflow-hidden")
+    document.body.style.overflow = 'auto';
+  }
+
+  openModalHistory(){
+    event.preventDefault();
+    this.modalHistoryTarget.classList.remove("hidden")
+
+    document.body.style.overflow = 'hidden';
+  }
+
+  closeModalHistory() {
+    this.modalHistoryTarget.classList.add("hidden")
+
     document.body.style.overflow = 'auto';
   }
 
