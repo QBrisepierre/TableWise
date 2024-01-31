@@ -1,41 +1,44 @@
-<div class="flex items-center px-6 py-8 bg-white rounded-lg shadow-md shadow-gray-200 ">
-  <div class="flex items-center -mx-2">
-      <svg class="mx-2" width="70" height="70" viewBox="0 0 70 70" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="35" cy="35" r="35" fill="#713BDB" fill-opacity="0.05" />
-          <path d="M26 44C26 40.625 30.5 40.625 32.75 38.375C33.875 37.25 30.5 37.25 30.5 31.625C30.5 27.8754 31.9996 26 35 26C38.0004 26 39.5 27.8754 39.5 31.625C39.5 37.25 36.125 37.25 37.25 38.375C39.5 40.625 44 40.625 44 44" stroke="#6F52ED" stroke-width="2" stroke-linecap="square" />
-      </svg>
 
-      <div class="mx-2">
-          <h3 class="text-2xl font-medium text-gray-800"><%= @restaurant.no_shows.count %></h3>
-          <p class="mt-1 text-sm text-gray-500">NoShows</p>
-      </div>
-  </div>
-</div>
+    <div class="w-full flex items-center px-6 py-8 bg-white rounded-lg shadow-md shadow-gray-200 ">
+    <div class="flex items-center -mx-2">
+        <svg class="mx-2" width="70" height="70" viewBox="0 0 70 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="35" cy="35" r="35" fill="#713BDB" fill-opacity="0.05" />
+            <path d="M26 44C26 40.625 30.5 40.625 32.75 38.375C33.875 37.25 30.5 37.25 30.5 31.625C30.5 27.8754 31.9996 26 35 26C38.0004 26 39.5 27.8754 39.5 31.625C39.5 37.25 36.125 37.25 37.25 38.375C39.5 40.625 44 40.625 44 44" stroke="#6F52ED" stroke-width="2" stroke-linecap="square" />
+        </svg>
 
-<div class="flex items-center px-6 py-8 bg-white rounded-lg shadow-md shadow-gray-200 ">
-  <div class="flex items-center -mx-2">
-      <svg class="mx-2" width="70" height="70" viewBox="0 0 70 70" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="35" cy="35" r="35" fill="#33D69F" fill-opacity="0.07" />
-          <path d="M26 39L31 34" stroke="#21B8C7" stroke-width="2" stroke-linecap="round"
-              stroke-linejoin="round" />
-          <path
-              d="M32 34C32.5523 34 33 33.5523 33 33C33 32.4477 32.5523 32 32 32C31.4477 32 31 32.4477 31 33C31 33.5523 31.4477 34 32 34Z"
-              stroke="#21B8C7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-          <path
-              d="M37 39C37.5523 39 38 38.5523 38 38C38 37.4477 37.5523 37 37 37C36.4477 37 36 37.4477 36 38C36 38.5523 36.4477 39 37 39Z"
-              stroke="#21B8C7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-          <path d="M38 37L44 31M33 34L36 37L33 34Z" stroke="#21B8C7" stroke-width="2"
-              stroke-linecap="round" stroke-linejoin="round" />
-      </svg>
+        <div class="mx-2">
+            <h3 class="text-2xl font-medium text-gray-800"><%= @restaurant.no_shows.count %></h3>
+            <p class="mt-1 text-sm text-gray-500">NoShows</p>
+        </div>
+    </div>
+    </div>
 
-      <div class="mx-2">
-          <h3 class="text-2xl font-medium text-gray-800"><%= @no_shows_this_month.count %> <span class="text-xl text-gray-600">(<%= @delta %>%)</span></h3>
-          <p class="mt-1 text-sm text-gray-500">NoShows ajouter ce mois</p>
-      </div>
-  </div>
-</div>
+    <div class="w-full flex items-center px-6 py-8 bg-white rounded-lg shadow-md shadow-gray-200 ">
+    <div class="flex items-center -mx-2">
+        <svg class="mx-2" width="70" height="70" viewBox="0 0 70 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="35" cy="35" r="35" fill="#33D69F" fill-opacity="0.07" />
+            <path d="M26 39L31 34" stroke="#21B8C7" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" />
+            <path
+                d="M32 34C32.5523 34 33 33.5523 33 33C33 32.4477 32.5523 32 32 32C31.4477 32 31 32.4477 31 33C31 33.5523 31.4477 34 32 34Z"
+                stroke="#21B8C7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            <path
+                d="M37 39C37.5523 39 38 38.5523 38 38C38 37.4477 37.5523 37 37 37C36.4477 37 36 37.4477 36 38C36 38.5523 36.4477 39 37 39Z"
+                stroke="#21B8C7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M38 37L44 31M33 34L36 37L33 34Z" stroke="#21B8C7" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
 
-<div class="flex items-center px-6 py-8 bg-white rounded-lg shadow-md shadow-gray-200 ">
+        <div class="mx-2">
+            <h3 class="text-2xl font-medium text-gray-800"><%= @no_shows_this_month.count %> <span class="text-xl text-gray-600">(<%= @delta %>%)</span></h3>
+            <p class="mt-1 text-sm text-gray-500">NoShows ajouter ce mois</p>
+        </div>
+    </div>
+    </div>
+
+
+
+<div class="w-full flex items-center px-6 py-8 bg-white rounded-lg shadow-md shadow-gray-200 ">
   <div class="flex items-center -mx-2">
       <svg class="mx-2" width="70" height="70" viewBox="0 0 70 70" fill="none" xmlns="http://www.w3.org/2000/svg">
           <circle cx="35" cy="35" r="35" fill="#FF4C61" fill-opacity="0.05" />
@@ -52,7 +55,7 @@
   </div>
 </div>
 
-<div class="flex items-center px-6 py-8 bg-white rounded-lg shadow-md shadow-gray-200 ">
+<div class="w-full flex items-center px-6 py-8 bg-white rounded-lg shadow-md shadow-gray-200 ">
   <div class="flex items-center -mx-2">
       <svg class="mx-2" width="70" height="70" viewBox="0 0 70 70" fill="none" xmlns="http://www.w3.org/2000/svg">
           <circle cx="35" cy="35" r="35" fill="#4CB8FF" fill-opacity="0.07" />
