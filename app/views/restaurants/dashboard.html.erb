@@ -1,7 +1,6 @@
 <div data-controller="modal" style="min-height: 100vh">
-    <%= render "modal_noshow" %>
 
-    <div class="min-h-full bg-gray-100" data-modal-target="blur">
+    <div class="min-h-full bg-gray-100">
       <%= render "header" %>
       <div>
         <header class="bg-white shadow">
@@ -12,17 +11,21 @@
         </header>
       </div>
       <main>
-        <div class="mx-0 max-w-full py-6 sm:px-6 lg:px-8 h-screen">
+        <%= render "modal_noshow" %>
+        <div class="mx-0 max-w-full py-6 sm:px-6 lg:px-8">
 
-          <section class="grid grid-cols-1 gap-8 px-6 xl:grid-cols-3 2xl:grid-cols-4 md:grid-cols-2 ">
-
-            <%= render "chart" %>
-
-            <div class="flex flex-col justify-center md:row-span-3 gap-y-4 gap-x-8" style="grid-column: span 3">
-              <%= render "table" %>
+          <section class="px-6 ">
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+              <%= render "chart" %>
             </div>
 
-            <%= render "donut" %>
+            <div class="lg:flex lg:space-x-4">
+              <div class="flex flex-col justify-center md:w-full lg:w-2/3">
+                <%= render "table" %>
+              </div>
+
+              <%= render "donut" %>
+            </div>
           
           </section>
 

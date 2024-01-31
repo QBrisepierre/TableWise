@@ -15,5 +15,8 @@ export default class extends Controller {
 
   toggle() {
     this.profilTarget.classList.toggle("hidden")
+    setTimeout(() => {
+    this.profilTarget.classList.toggle("opacity-0")
+    })
   }
 }
