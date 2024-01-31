@@ -8,10 +8,15 @@ export default class extends Controller {
 
   open() {
     this.homeTarget.classList.remove("hidden")
+    setTimeout(() => {
+      this.homeTarget.classList.remove("opacity-0")
+      })
   }
 
   close() {
-    this.homeTarget.classList.add("hidden")
-
+    this.homeTarget.classList.add("opacity-0")
+    setTimeout(() => {
+      this.homeTarget.classList.add("hidden")
+      }, "500")
   }
 }
