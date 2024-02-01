@@ -1,0 +1,92 @@
+<section class="container w-full">
+  <div class="flex flex-col">
+    <div class="mb-6 flex flex-col-reverse md:flex-row md:justify-between">
+
+      <div class= "flex space-x-4 items-center w-md md:w-1/2 mt-6 md:mt-0">
+        <div class="inline-flex w-full items-center px-3 py-1 rounded-full gap-x-2 text-yellow-500 bg-yellow-100/60 ">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M9 3L3 9M3 3L9 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <h2 class="text-sm font-normal">NoShow < 3 </h2>
+        </div>
+
+        <div class="inline-flex w-full items-center px-3 py-1 rounded-full gap-x-2 text-orange-500 bg-orange-100/60 ">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M9 3L3 9M3 3L9 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <h2 class="text-sm font-normal">NoShow < 6</h2>
+        </div>
+
+        <div class="inline-flex items-center w-full px-3 py-1 rounded-full gap-x-2 text-red-500 bg-red-100/60 ">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M9 3L3 9M3 3L9 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <h2 class="text-sm font-normal">NoShow</h2>
+        </div>
+
+      </div>
+
+
+
+        <%= form_with url: dashboard_restaurant_path, method: :get, class: "flex justify-center gap-x-4" do %>
+          <div class="relative flex items-center w-1/2 md:w-96">
+              
+              <%= text_field_tag :query,
+                params[:query],
+                class: "input text-sm",
+                placeholder: "Enter Email, Téléphone, Nom"
+              %>
+                <%= button_tag(type: 'submit', name: "") do %>
+                  <span class="absolute grid w-5 h-5 top-2/4 right-3 -translate-y-2/4 place-items-center text-blue-gray-500">
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" aria-hidden="true" class="w-5 h-5">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                          d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"></path>
+                      </svg>
+                  </span>
+                <% end %>
+          </div>
+        <% end %>
+
+    </div>
+    <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+      <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+        <div class="overflow-hidden border border-gray-200 md:rounded-lg">
+          <table class="min-w-full divide-y divide-gray-200 ">
+            <%= render "restaurants/dashboard/table/header" %>
+            <%= render "restaurants/dashboard/table/informations/no_shows" %>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hidden flex items-center justify-between mt-6">
+    <a href="#" class="flex items-center px-5 py-2 text-sm text-gray-700 capitalize transition-colors duration-200 bg-white border rounded-md gap-x-2 hover:bg-gray-100">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 rtl:-scale-x-100">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 15.75L3 12m0 0l3.75-3.75M3 12h18" />
+      </svg>
+      <span>
+        previous
+      </span>
+    </a>
+
+    <div class="items-center hidden md:flex gap-x-3">
+      <a href="#" class="px-2 py-1 text-sm text-blue-500 rounded-md bg-blue-100/60">1</a>
+      <a href="#" class="px-2 py-1 text-sm text-gray-500 rounded-md hover:bg-gray-100">2</a>
+      <a href="#" class="px-2 py-1 text-sm text-gray-500 rounded-md hover:bg-gray-100">3</a>
+      <a href="#" class="px-2 py-1 text-sm text-gray-500 rounded-md hover:bg-gray-100">...</a>
+      <a href="#" class="px-2 py-1 text-sm text-gray-500 rounded-md hover:bg-gray-100">12</a>
+      <a href="#" class="px-2 py-1 text-sm text-gray-500 rounded-md hover:bg-gray-100">13</a>
+      <a href="#" class="px-2 py-1 text-sm text-gray-500 rounded-md hover:bg-gray-100">14</a>
+    </div>
+    <a href="#" class="flex items-center px-5 py-2 text-sm text-gray-700 capitalize transition-colors duration-200 bg-white border rounded-md gap-x-2 hover:bg-gray-100 :bg-gray-900">
+      <span>
+        Next
+      </span>
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 rtl:-scale-x-100">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
+      </svg>
+    </a>
+  </div>
+</section>

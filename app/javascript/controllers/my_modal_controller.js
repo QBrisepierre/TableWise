@@ -5,12 +5,13 @@ export default class extends Controller {
   static targets = ["modalHistory"]
   
   openModal(){
-    this.modalHistoryTarget.classList.remove("hidden")   
+    this.modalHistoryTarget.classList.remove("hidden")
+    document.body.style.overflow = 'hidden';
   }
 
   closeModal() {
     this.modalHistoryTarget.classList.add("hidden")
-   
+    document.body.style.overflow = 'auto';   
   }
   
 }

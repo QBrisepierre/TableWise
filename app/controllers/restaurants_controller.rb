@@ -3,73 +3,48 @@ class RestaurantsController < ApplicationController
   helper_method :find_customer, :find_noshows_by_restaurant
 
   def dashboard
-    # If searching
+    # Check if a search query is present in the params
     if params[:query].present?
-      no_shows = @restaurant.customers
-      found_customer = Customer.search_by_email_and_phone(params[:query])
-      @customers = found_customer.select do |element|
-        no_shows.include?(element)
-      end
+      # If searching, retrieve customers with no-shows based on the query
+      @customers =  Customer.search_by_email_and_phone(params[:query])
       @count = @customers.count + 1
     else
-      # else return all no_shows unique
-      @no_shows = @restaurant.no_shows.uniq{|n| n.customer_id}
-      @count = @no_shows.count + 1
+       # If no search query, return all unique no-shows for the restaurant
+      @customers = unique_no_shows
+      @count = @customers.count + 1
     end
 
-    # Statistique
-    @no_shows_this_month = @restaurant.no_shows.select { |no_show| (Date.today - no_show.date_service).to_i < 30 }
-    @no_shows_last_month = @restaurant.no_shows.select { |no_show| (Date.today - no_show.date_service).to_i > 30 }
+    # Calculate and set statistics for the dashboard
+    calculate_statistics
 
-    uniq_customer = @restaurant.no_shows.uniq { |t| t.customer_id}
-    all = []
-    uniq_customer.each do |n|
-      all << n.customer.no_shows.select { |n| n.restaurant_id != @restaurant.id }.count
-    end
-    sum = 0
-    all.each {|a| sum += a}
-    if sum > 0 || @restaurant.no_shows.count > 0
-      @fiability = (sum.fdiv(@restaurant.no_shows.count) * 100).to_i
-    else
-      @fiability = 0
-    end
-
-    unless @restaurant.no_shows.empty?
-      if @no_shows_this_month.count > @no_shows_last_month.count &&  @no_shows_last_month.count > 0
-        @delta = ((@no_shows_this_month.count - @no_shows_last_month.count) * 100).fdiv(@no_shows_last_month.count).to_i
-
-      elsif @no_shows_this_month.count < @no_shows_last_month.count
-        @delta = ((@no_shows_this_month.count - @no_shows_last_month.count) * 100).fdiv(@no_shows_last_month.count).to_i
-
-      else
-        @delta = 0
-      end
-    end
-
-    # Create new no_shows for opening modal
+     # Create a new customer instance for opening a modal
     @customer = Customer.new
   end
 
+  # Helper methods
+
+  # Find and return a customer by their ID
   def find_customer(customer)
     Customer.find(customer)
   end
 
+  # Find and return no-shows for a specific customer in the current restaurant
   def find_noshows_by_restaurant(customer)
     no_shows_by_restaurant = customer.no_shows.select{ |n| n.restaurant_id == @restaurant.id}
     no_shows_by_restaurant.sort_by {|d| d.date_service}.reverse
   end
 
-
+  # Search for customers based on a query, if present
   def search
-    if params[:query].present?
-      @customers = Customer.search_by_email_and_phone(params[:query])
-    end
+    @customers = search_customers(params[:query]) if params[:query].present?
   end
 
+  # Initialize a new restaurant instance for creating a new restaurant
   def new
     @restaurant = Restaurant.new
   end
 
+  # Create a new restaurant based on the parameters and redirect to its path
   def create
     @restaurant = Restaurant.new(restaurant_params)
     @restaurant.save
@@ -85,5 +60,85 @@ class RestaurantsController < ApplicationController
 
   def restaurant_params
     params.require(:restaurant).permit(:name, :address, :phone, :email)
+  end
+
+  # Helper methods
+
+  def search_customers(query)
+    Customer.search_by_email_and_phone(query)
+  end
+
+  # Get unique no-shows associated with the current restaurant
+  def unique_no_shows
+     # Retrieve customers with at least one no_show for this restaurant
+    customers_with_no_shows = Customer.joins(:no_shows)
+                                       .where('no_shows.restaurant_id' => @restaurant.id)
+                                       .distinct
+                                       .order('customers.created_at ASC')
+
+    # Sort customers by the date of their latest no_show in descending order
+    @customers_with_no_shows = customers_with_no_shows.sort_by do |customer|
+      customer.no_shows.maximum(:date_service)
+    end.reverse
+  end
+
+  def calculate_statistics
+    # Calculate the no-shows for the current month and the previous month
+    @no_shows_this_month = recent_no_shows(Date.today.beginning_of_month, Date.today.end_of_month)
+    @no_shows_last_month = recent_no_shows(Date.today.prev_month.beginning_of_month, Date.today.prev_month.end_of_month)
+
+    # Get unique customers who have made no-shows
+    uniq_customer = unique_no_show_customers
+
+    # Calculate the total number of no-shows for other restaurants for each unique customer
+    all = calculate_no_shows_for_other_restaurants(uniq_customer)
+
+    # Calculate the reliability of no-shows for the current restaurant
+    calculate_fiability(all)
+
+    # Calculate the variation (delta) between the current month's no-shows and the previous month's
+    calculate_delta
+  end
+
+  # ...
+
+  # Helper methods
+
+  def recent_no_shows(start_date, end_date)
+    date_range = start_date..end_date
+    @restaurant.no_shows.select { |no_show| date_range.cover?(no_show.date_service) }
+  end
+
+  def unique_no_show_customers
+    # Retrieve unique customers who have made no-shows
+    @restaurant.no_shows.uniq { |t| t.customer_id }
+  end
+
+  def calculate_no_shows_for_other_restaurants(uniq_customer)
+    # Calculate the total number of no-shows for other restaurants for each unique customer
+    all = uniq_customer.map do |n|
+      n.customer.no_shows.select { |n| n.restaurant_id != @restaurant.id }.count
+    end
+    all
+  end
+
+  def calculate_fiability(all)
+    sum = all.sum
+    # Calculate the reliability percentage for the current restaurant
+    @fiability = (sum.fdiv(@restaurant.no_shows.count) * 100).to_i if sum > 0 || @restaurant.no_shows.count > 0
+    @fiability ||= 0
+  end
+
+  def calculate_delta
+    unless @restaurant.no_shows.empty?
+      if @no_shows_this_month.count > @no_shows_last_month.count &&  @no_shows_last_month.count > 0
+        # Calculate the percentage change (delta) between the current month's no-shows and the previous month's
+        @delta = ((@no_shows_this_month.count - @no_shows_last_month.count) * 100).fdiv(@no_shows_last_month.count).to_i
+      elsif @no_shows_this_month.count < @no_shows_last_month.count
+        @delta = ((@no_shows_this_month.count - @no_shows_last_month.count) * 100).fdiv(@no_shows_last_month.count).to_i
+      else
+        @delta = 0
+      end
+    end
   end
 end
