@@ -7,21 +7,21 @@
           <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M9 3L3 9M3 3L9 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
-          <h2 class="text-sm font-normal">NoShow < 3 </h2>
+          <h2 class="text-xs md:text-sm font-normal">NoShow < 3 </h2>
         </div>
 
         <div class="inline-flex w-full items-center px-3 py-1 rounded-full gap-x-2 text-orange-500 bg-orange-100/60 ">
           <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M9 3L3 9M3 3L9 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
-          <h2 class="text-sm font-normal">NoShow < 6</h2>
+          <h2 class="text-xs md:text-sm font-normal">NoShow < 6</h2>
         </div>
 
         <div class="inline-flex items-center w-full px-3 py-1 rounded-full gap-x-2 text-red-500 bg-red-100/60 ">
           <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M9 3L3 9M3 3L9 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
-          <h2 class="text-sm font-normal">NoShow</h2>
+          <h2 class="text-xs md:text-sm font-normal">NoShow</h2>
         </div>
 
       </div>
@@ -29,7 +29,7 @@
 
 
         <%= form_with url: dashboard_restaurant_path, method: :get, class: "flex justify-center gap-x-4" do %>
-          <div class="relative flex items-center w-1/2 md:w-96">
+          <div class="relative flex items-center w-full md:w-96">
               
               <%= text_field_tag :query,
                 params[:query],

@@ -4,8 +4,8 @@
       <%= render "restaurants/dashboard/header/header" %>
       <div>
         <header class="bg-white shadow">
-          <div class="max-w-full px-4 py-6 sm:px-6 lg:px-8 flex justify-between">
-            <h1 class="text-3xl font-bold tracking-tight text-gray-900">Tableau de bord</h1>
+          <div class="max-w-full px-4 py-6 sm:px-6 lg:px-8 flex justify-between items-center">
+            <h1 class="text-xl lg:text-3xl font-bold tracking-tight text-gray-900">Tableau de bord</h1>
             <a href="" data-action="click->modal#openModalNoShow" class="btn bg-primary">+ Ajouter un NoShow</a>
           </div>
         </header>
@@ -14,12 +14,12 @@
         <%= render "restaurants/dashboard/create/modal_noshow" %>
         <div class="mx-0 max-w-full py-6 sm:px-6 lg:px-8">
 
-          <section class="px-6 ">
-            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+          <section class="px-6 flex flex-col lg:block">
+            <div class="grid order-last grid-cols-1 lg:grid-cols-4 gap-4 mb-6">
               <%= render "restaurants/dashboard/stats/chart" %>
             </div>
 
-            <div class="lg:flex lg:space-x-4">
+            <div class="lg:flex lg:space-x-4 order-first mb-6 lg:mb-0">
               <div class="flex flex-col justify-center md:w-full lg:w-2/3">
                 <%= render "restaurants/dashboard/table/table" %>
               </div>
