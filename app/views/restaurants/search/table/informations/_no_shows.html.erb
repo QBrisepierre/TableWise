@@ -4,8 +4,6 @@
   <% if @customers.present? %>
     <!-- Iterate through each customer in the list -->
     <% @customers.each do |customer| %>
-      <!-- Find the customer's no-shows for the specific restaurant -->
-      <% no_shows_by_restaurant = find_noshows_by_restaurant(customer) %>
       <!-- Table row for each customer -->
       <tr>
         <!-- Checkbox column -->
@@ -23,7 +21,7 @@
         <!-- Badge column with customer information -->
         <td class="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
           <!-- Render badge for the customer -->
-          <%= render "restaurants/dashboard/table/badge", customer: customer %>
+          <%= render "restaurants/search/table/badge", customer: customer %>
           </div>
         </td>
         <!-- Customer information columns -->
@@ -105,7 +103,7 @@
                           <!-- No-show count details in a div -->
                           <div class="mx-2">
                             <!-- No-show count -->
-                            <h3 class="text-2xl font-medium text-gray-800"><%= no_shows_by_restaurant.count %></h3>
+                            <h3 class="text-2xl font-medium text-gray-800"><%= customer.no_shows.count %></h3>
                             <!-- Label for no-shows -->
                             <p class="mt-1 text-sm text-gray-500">NoShows</p>
                           </div>
@@ -124,14 +122,15 @@
                             </svg>
                           </span>
                           <!-- Date and recent status details -->
-                          <h3 class="flex items-center mb-1 text-lg font-semibold text-gray-900"><%= no_shows_by_restaurant.first.date_service.strftime('%m/%d/%Y') %><span class="text-primary bg-yellow-100/60 text-sm font-medium me-2 px-2.5 py-0.5 rounded ms-3">Le plus récent</span></h3>
+                          <h3 class="flex items-center mb-1 text-lg font-semibold text-gray-900"><%= customer.no_shows.first.date_service.strftime('%m/%d/%Y') %><span class="text-primary bg-yellow-100/60 text-sm font-medium me-2 px-2.5 py-0.5 rounded ms-3">Le plus récent</span></h3>
                           <!-- Block for recorded date of the no-show -->
-                          <p class="block mb-2 text-sm font-normal leading-none text-gray-400">Enregistrée le : <%= no_shows_by_restaurant.first.created_at.strftime('%m/%d/%Y') %></p>
+                          <p class="block mb-2 text-sm font-normal leading-none text-gray-400">Enregistrée le : <%= customer.no_shows.first.created_at.strftime('%m/%d/%Y') %></p>
                         </li>
+                        <% c = no_shows_to_array(customer) %>
                         <!-- Shift the first element from the array -->
-                        <% no_shows_by_restaurant.shift %>
+                        <% c.shift %>
                         <!-- Iterate through remaining no-shows -->
-                        <% no_shows_by_restaurant.each do |element| %>
+                        <% c.each do |element| %>
                           <!-- List item for each no-show -->
                           <li class="mb-10 ms-6">            
                             <!-- Circle with yellow background for status -->

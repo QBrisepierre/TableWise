@@ -8,8 +8,14 @@
         <div class="hidden md:block">
           <div class="ml-10 flex items-baseline space-x-4">
             <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-            <%= link_to "Tableau de bord", dashboard_restaurant_path, class: "bg-secondary text-white rounded-md px-3 py-2 text-sm font-medium" %>
-            <%= link_to "Rechercher", search_restaurant_path, class: "text-secondary hover:bg-secondary hover:text-white rounded-md px-3 py-2 text-sm font-medium" %>
+            <% if current_page?(dashboard_restaurant_url) %>
+              <%= link_to "Tableau de bord", dashboard_restaurant_path, class: "bg-secondary text-white rounded-md px-3 py-2 text-sm font-medium" %>
+              <%= link_to "Rechercher", search_restaurant_path, class: "text-secondary hover:bg-secondary hover:text-white rounded-md px-3 py-2 text-sm font-medium" %>
+            <% elsif current_page?(search_restaurant_url) %>
+              <%= link_to "Tableau de bord", dashboard_restaurant_path, class: "text-secondary hover:bg-secondary hover:text-white rounded-md px-3 py-2 text-sm font-medium" %>
+              <%= link_to "Rechercher", search_restaurant_path, class: "bg-secondary text-white rounded-md px-3 py-2 text-sm font-medium" %>
+            <% else %>
+            <% end %>
           </div>
         </div>
       </div>

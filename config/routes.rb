@@ -12,6 +12,9 @@ Rails.application.routes.draw do
       get :dashboard
       get :search
     end
+    collection do
+      post :import
+    end
   end
   resources :customers, only: [ :create]
   resources :no_shows, only: [ :create]

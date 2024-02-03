@@ -26,7 +26,7 @@
 
       </div>
 
-        <%= form_with url: dashboard_restaurant_path, method: :get, class: "flex justify-center gap-x-4" do %>
+        <%= form_with url: search_restaurant_path, method: :get, class: "flex justify-center gap-x-4" do %>
           <div class="relative flex items-center w-full md:w-96">
               
               <%= text_field_tag :query,
@@ -51,8 +51,8 @@
       <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
         <div class="overflow-hidden border border-gray-200 md:rounded-lg">
           <table class="min-w-full divide-y divide-gray-200 ">
-            <%= render "restaurants/dashboard/table/header" %>
-            <%= render "restaurants/dashboard/table/informations/no_shows" %>
+            <%= render "restaurants/search/table/header" %>
+            <%= render "restaurants/search/table/informations/no_shows" %>
           </table>
         </div>
       </div>
