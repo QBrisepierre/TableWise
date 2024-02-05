@@ -3,10 +3,6 @@ class CustomersController < ApplicationController
     # Create a new customer instance with the provided parameters
     @customer = Customer.new(customer_params)
 
-    # Format the phone number to include spaces for better readability
-    phone = customer_params["phone"].gsub(/(?<=\d{2})(\d{2})/, ' \1')
-    @customer.phone = phone
-
     # Check if the customer is valid
     if @customer.valid?
       # Save the customer if valid

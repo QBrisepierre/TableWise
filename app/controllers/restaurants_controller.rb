@@ -15,7 +15,6 @@ class RestaurantsController < ApplicationController
       @customers = found_customer.select do |customer|
         no_shows.include?(customer)
       end
-      raise
       @count = @customers.count + 1
     else
        # If no search query, return all unique no-shows for the restaurant
@@ -47,15 +46,28 @@ class RestaurantsController < ApplicationController
   def search
     @customers = search_customers(params[:query]) if params[:query].present?
     @count = @customers.count + 1 if @customers.present?
+    if params[:import_phone]
+      @import_phone = params[:import_phone]
+      @phone = {}
+      @import_phone.each do |phone|
+        @phone[phone[2..-1].split("").unshift("0").join] = false
+      end
+      @phone.each do |phone, value|
+        @phone[phone] = true if Customer.search_by_email_and_phone(phone).present?
+      end
+      raise
+
+    end
   end
 
   def import
     file = params[:file]
-    sc = File.open(file, "r:ISO-8859-1:UTF-8")
-    csv = CSV.parse(sc, headers: true, :quote_char => "|", col_sep: "\t")
-    t = []
-    CSV.foreach(sc, headers: :first_row, encoding: Encoding::ISO_8859_1, :quote_char => "|", col_sep: "\t" ) { |row| t << row }
-    raise
+    csv = File.open(file)
+    @import_phone = []
+    CSV.foreach(csv, headers: :first_row) do |row|
+      @import_phone << row["Tel."] if row["Tel."].present?
+    end
+    redirect_to search_restaurant_path(current_user.restaurant.id, params: {import_phone: @import_phone})
   end
 
   # Initialize a new restaurant instance for creating a new restaurant

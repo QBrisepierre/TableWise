@@ -9,6 +9,6 @@ class Customer < ApplicationRecord
   pg_search_scope :search_by_email_and_phone,
   against: [ :email, :phone, :name ],
   using: {
-    tsearch: { prefix: true }
+    tsearch: { prefix: true, any_word: true}
   }
 end
