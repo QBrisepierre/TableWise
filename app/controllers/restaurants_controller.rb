@@ -1,12 +1,21 @@
 class RestaurantsController < ApplicationController
+  require 'csv'
   before_action :set_restaurant, only: [:dashboard]
-  helper_method :find_customer, :find_noshows_by_restaurant
+  helper_method :find_customer, :find_noshows_by_restaurant, :no_shows_to_array
 
   def dashboard
     # Check if a search query is present in the params
     if params[:query].present?
       # If searching, retrieve customers with no-shows based on the query
-      @customers =  Customer.search_by_email_and_phone(params[:query])
+      # Find all no_shows for one restaurant
+      no_shows = @restaurant.customers
+      # Searching in all bdd
+      found_customer = Customer.search_by_email_and_phone(params[:query])
+      # Select only customer's have no_show fo this restaurant
+      @customers = found_customer.select do |customer|
+        no_shows.include?(customer)
+      end
+      raise
       @count = @customers.count + 1
     else
        # If no search query, return all unique no-shows for the restaurant
@@ -37,6 +46,16 @@ class RestaurantsController < ApplicationController
   # Search for customers based on a query, if present
   def search
     @customers = search_customers(params[:query]) if params[:query].present?
+    @count = @customers.count + 1 if @customers.present?
+  end
+
+  def import
+    file = params[:file]
+    sc = File.open(file, "r:ISO-8859-1:UTF-8")
+    csv = CSV.parse(sc, headers: true, :quote_char => "|", col_sep: "\t")
+    t = []
+    CSV.foreach(sc, headers: :first_row, encoding: Encoding::ISO_8859_1, :quote_char => "|", col_sep: "\t" ) { |row| t << row }
+    raise
   end
 
   # Initialize a new restaurant instance for creating a new restaurant
@@ -50,6 +69,11 @@ class RestaurantsController < ApplicationController
     @restaurant.save
 
     redirect_to restaurant_path(@restaurant)
+  end
+
+  def no_shows_to_array(customer)
+    c = []
+    c = customer.no_shows.each {|n| c << n}
   end
 
   private
