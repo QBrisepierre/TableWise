@@ -1,4 +1,5 @@
 class RestaurantsController < ApplicationController
+  require 'csv'
   before_action :set_restaurant, only: [:dashboard]
   helper_method :find_customer, :find_noshows_by_restaurant, :no_shows_to_array
 
@@ -49,7 +50,12 @@ class RestaurantsController < ApplicationController
   end
 
   def import
-    binding.pry
+    file = params[:file]
+    sc = File.open(file, "r:ISO-8859-1:UTF-8")
+    csv = CSV.parse(sc, headers: true, :quote_char => "|", col_sep: "\t")
+    t = []
+    CSV.foreach(sc, headers: :first_row, encoding: Encoding::ISO_8859_1, :quote_char => "|", col_sep: "\t" ) { |row| t << row }
+    raise
   end
 
   # Initialize a new restaurant instance for creating a new restaurant

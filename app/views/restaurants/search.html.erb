@@ -7,7 +7,7 @@
           <h1 class="text-3xl font-bold tracking-tight text-gray-900">Rechercher</h1>
           <a href="" data-action="click->modal#open" class="btn bg-primary">+ NoShow</a>
           <%= form_with url: import_restaurants_path, method: :post do |f|%>
-            <%= f.file_field :file, except: ".csv" %>
+            <%= f.file_field :file, accept: ".csv" %>
             <%= f.button "import" %>
           <% end %>
         </div>
