@@ -55,19 +55,23 @@ class RestaurantsController < ApplicationController
       @phone.each do |phone, value|
         @phone[phone] = true if Customer.search_by_email_and_phone(phone).present?
       end
-      raise
-
+      @count = @phone.count + 1
     end
   end
 
   def import
     file = params[:file]
-    csv = File.open(file)
+    csv = File.open(file, "r:ISO-8859-1")
     @import_phone = []
     CSV.foreach(csv, headers: :first_row) do |row|
       @import_phone << row["Tel."] if row["Tel."].present?
     end
     redirect_to search_restaurant_path(current_user.restaurant.id, params: {import_phone: @import_phone})
+  end
+
+  def import_list
+    import_phone = params[:phone].split
+    redirect_to search_restaurant_path(current_user.restaurant.id, params: {import_phone: import_phone})
   end
 
   # Initialize a new restaurant instance for creating a new restaurant

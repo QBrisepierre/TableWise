@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     end
     collection do
       post :import
+      post :import_list
     end
   end
   resources :customers, only: [ :create]

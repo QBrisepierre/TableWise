@@ -1,0 +1,43 @@
+<!-- Table body with background and dividing lines -->
+<tbody class="bg-white divide-y divide-gray-200">
+  <!-- Check if there are any customers in the list -->
+  <% if @phone.present? %>
+    <!-- Iterate through each customer in the list -->
+    <% @phone.each do |phone, no_show| %>
+      <!-- Table row for each customer -->
+      <tr>
+        <!-- Checkbox column -->
+        <td class="px-4 py-4 text-sm font-medium text-gray-700  whitespace-nowrap">
+          <!-- Inline-flex container with checkbox and customer count -->
+          <div class="inline-flex items-center gap-x-3">
+            <!-- Checkbox for customer selection -->
+            <input type="checkbox" class="text-primary border-gray-300 rounded">
+            <!-- Display the customer count -->
+            <span>#<%= @count - 1 %></span>
+            <!-- Decrement the count -->
+            <% @count -= 1 %>
+          </div>
+        </td>
+        <!-- Badge column with customer information -->
+        <td class="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
+          <!-- Render badge for the customer -->
+          <%= render "restaurants/search/table/badge_phone", no_show: no_show %>
+          </div>
+        </td>
+        <!-- Customer phone number column -->
+        <td class="px-4 py-4 text-sm text-gray-500  whitespace-nowrap"><%= phone %></td>
+      </tr>
+    <% end %>
+  <!-- If no customers are present, display a message -->
+  <% else %>
+    <!-- Table row with a colspan for a centered message -->
+    <tbody class="bg-white divide-y divide-gray-200">
+      <tr>
+        <!-- Single cell with colspan for centering -->
+        <td colspan="5" class="px-4 py-8 text-sm font-medium text-gray-500 text-center">
+          Aucun noshow trouvé.
+        </td>
+      </tr>
+    </tbody>
+  <% end %>
+</tbody>
