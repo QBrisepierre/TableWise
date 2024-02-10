@@ -1,0 +1,32 @@
+ <div  data-modal-target="modalImport" class="relative flex justify-center hidden">
+    <div  class="fixed inset-0 z-10 overflow-y-auto" 
+      aria-labelledby="modal-title" role="dialog" aria-modal="true"
+    >
+      <div class="backdrop-blur-sm backdrop-brightness-50 flex items-end justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
+        <span class="hidden sm:inline-block sm:h-screen sm:align-middle" aria-hidden="true">&#8203;</span>
+
+        <div class="relative inline-block px-4 pt-5 pb-4 overflow-hidden text-left align-bottom transition-all transform bg-white rounded-lg shadow-xl sm:my-8 sm:w-full sm:max-w-sm sm:p-6 sm:align-middle">
+          <h3 class="text-lg font-medium leading-6 text-gray-800 capitalize" id="modal-title">
+              Créer un contact
+          </h3>
+          <p class="mt-2 text-sm text-gray-500">
+              Losque vous créer un contact il sera automatiquement ajouter en tant que NoShow.
+          </p>
+
+          <div class="mt-4">
+            <%= form_with url: import_list_restaurants_path, method: :post do |f|%>
+              <%= f.text_area :phone %>
+          </div>
+
+          <div class="mt-8 flex items-center">
+            <button type="button" data-action="click->modal#closeModalImport" class="me-1 w-full btn text-sm font-medium tracking-wide text-gray-700 capitalize transition-colors duration-300 transform border border-gray-200 rounded-md hover:bg-gray-100 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-40">
+              Annuler
+            </button>
+              <%= f.button "importer", class: "ms-1 btn bg-primary w-full cursor-pointer" %>
+          </div>
+        <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

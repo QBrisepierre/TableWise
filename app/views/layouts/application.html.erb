@@ -10,15 +10,16 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <%= javascript_importmap_tags %>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
   </head>
 
   <body>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     <%= render "shared/navbar" if current_page?(root_path)%>
-    <main class="container max-w-full" style="min-height: 100vh;">
+    <div class="container max-w-full" style="min-height: 100vh;">
       <%= yield %>
-    </main>
+    </div>
   </body>
   <%= render "shared/footer" %>
 </html>
