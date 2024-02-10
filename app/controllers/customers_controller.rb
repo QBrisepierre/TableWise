@@ -10,6 +10,7 @@ class CustomersController < ApplicationController
     else
       # If not valid, handle the error and attempt to find an existing customer by phone
       search = @customer.errors.messages.first[0].to_s
+      phone = params[:customer][:phone]
       @customer = Customer.find_by(phone: phone) if search == 'phone'
     end
 
