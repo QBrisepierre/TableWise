@@ -15,7 +15,11 @@
 
           <div class="mt-4">
             <%= form_with url: import_list_restaurants_path, method: :post do |f|%>
-              <%= f.text_area :phone %>
+              <%= f.file_field :file,
+                class: "cursor-pointer block w-full px-3 py-2 mt-2 text-sm text-gray-600 bg-white border border-gray-200 rounded-lg file:bg-gray-200 file:text-gray-700 file:text-sm file:px-4 file:py-1 file:border-none file:rounded-full placeholder-gray-400/70 focus:border-yellow-400 focus:outline-none focus:ring focus:ring-yellow-300 focus:ring-opacity-40"
+              %>
+              <p>or</p>
+              <%= f.text_area :phone, class: "block  mt-2 w-full  placeholder-gray-400/70 dark:placeholder-gray-500 rounded-lg border border-gray-200 bg-white px-4 h-32 py-2.5 text-gray-700 focus:border-yellow-400 focus:outline-none focus:ring focus:ring-yellow-300 focus:ring-opacity-40", placeholder: "0606060606" %>
           </div>
 
           <div class="mt-8 flex items-center">

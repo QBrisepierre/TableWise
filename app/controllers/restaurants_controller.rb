@@ -49,12 +49,20 @@ class RestaurantsController < ApplicationController
       @import_phone = params[:import_phone]
       @phone = {}
       @import_phone.each do |phone|
-        @phone[phone[2..-1].split("").unshift("0").join] = false
-      end
-      @phone.each do |phone, value|
-        @phone[phone] = true if Customer.search_by_email_and_phone(phone).present?
+        if phone[0] != "0"
+          phone = phone[2..-1].split("").unshift("0").join
+        end
+        @phone[phone] = Customer.search_by_email_and_phone(phone) if Customer.search_by_email_and_phone(phone).present?
       end
       @count = @phone.count + 1
+    end
+    if params[:query].present?
+      # If searching, retrieve customers with no-shows based on the query
+      # Find all no_shows for one restaurant
+      # Searching in all bdd
+      @customers = Customer.search_by_email_and_phone(params[:query])
+      # Select only customer's have no_show fo this restaurant
+      @count = @customers.count + 1
     end
   end
 
@@ -69,8 +77,18 @@ class RestaurantsController < ApplicationController
   end
 
   def import_list
-    import_phone = params[:phone].split
-    redirect_to search_restaurant_path(current_user.restaurant.id, params: {import_phone: import_phone})
+    if params[:phone].present?
+      import_phone = params[:phone].split
+      redirect_to search_restaurant_path(current_user.restaurant.id, params: {import_phone: import_phone})
+    elsif params[:file].present?
+      file = params[:file]
+      csv = File.open(file, "r:ISO-8859-1")
+      import_phone = []
+      CSV.foreach(csv, headers: :first_row) do |row|
+        import_phone << row["Tel."] if row["Tel."].present?
+      end
+      redirect_to search_restaurant_path(current_user.restaurant.id, params: {import_phone: import_phone})
+    end
   end
 
   # Initialize a new restaurant instance for creating a new restaurant

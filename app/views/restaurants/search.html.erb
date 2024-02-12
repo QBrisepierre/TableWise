@@ -6,14 +6,30 @@
         <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8 flex justify-between">
           <h1 class="text-3xl font-bold tracking-tight text-gray-900">Rechercher</h1>
           <a href="" data-action="click->modal#openModalImport" class="btn bg-primary">Importer</a>
-        </div>       
+        </div>
       </header>
     </div>
-    <div style="min-height: 100vh" class="flex justify-center py-6">
+      <%= form_with url: search_restaurant_path, method: :get, class: "flex justify-center gap-x-4 py-6" do %>
+        <div class="relative flex items-center w-full md:w-1/2">
+          <%= text_field_tag :query,
+            params[:query],
+            class: "input text-sm",
+            placeholder: "Enter Email, Téléphone, Nom"
+          %>
+          <%= button_tag(type: 'submit', name: "") do %>
+            <span class="absolute grid w-5 h-5 top-2/4 right-3 -translate-y-2/4 place-items-center text-blue-gray-500">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                stroke="currentColor" aria-hidden="true" class="w-5 h-5">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"></path>
+              </svg>
+            </span>
+          <% end %>
+        </div>
+      <% end %>
+    <div style="min-height: 100vh" class="flex justify-center py-6 w-full">
       <%= render "restaurants/search/table_phone" %>
       <%= render "restaurants/search/import/modal_import" %>
     </div>
   </div>
-  
-  
 </div>
