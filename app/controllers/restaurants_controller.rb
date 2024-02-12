@@ -15,17 +15,16 @@ class RestaurantsController < ApplicationController
       @customers = found_customer.select do |customer|
         no_shows.include?(customer)
       end
-      @count = @customers.count + 1
     else
-       # If no search query, return all unique no-shows for the restaurant
+      # If no search query, return all unique no-shows for the restaurant
       @customers = unique_no_shows
-      @count = @customers.count + 1
     end
+    @count = @customers.count + 1
 
     # Calculate and set statistics for the dashboard
     calculate_statistics
 
-     # Create a new customer instance for opening a modal
+    # Create a new customer instance for opening a modal
     @customer = Customer.new
   end
 
