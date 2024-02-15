@@ -79,6 +79,7 @@ test:
 #
 production:
   <<: *default
-  database: table_wise_production
-  username: table_wise
+  database: <%= ENV["TABLE_WISE_DATABASE_NAME"] %>
+  username: <%= ENV["TABLE_WISE_DATABASE_USER"] %>
   password: <%= ENV["TABLE_WISE_DATABASE_PASSWORD"] %>
+  host: table_wise_db
