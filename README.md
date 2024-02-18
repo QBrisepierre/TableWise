@@ -22,3 +22,9 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+* .env
+RAILS_ENV=development
+TABLE_WISE_DATABASE_PASSWORD="tablewise"
+TABLE_WISE_DATABASE_USER="tablewise"
+TABLE_WISE_DATABASE_NAME="table_wise_production"
+RAILS_MASTER_KEY=ec1de255895b1154667dd36b85597206
