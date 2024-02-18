@@ -7,3 +7,18 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+user = User.new(email: "t@t.com", password: "123456")
+if user.valid?
+  puts "Create User"
+  user.save
+else
+  puts "User already created"
+end
+restaurant = Restaurant.new(name: "Chez test", address: "44 rue du test", phone: "0909090909", email: "cheztest@gmail.com", user_id: user.id) 
+if restaurant.valid?
+  puts "Create restaurant"
+  restaurant.save
+else
+  puts "restaurant already created"
+end
