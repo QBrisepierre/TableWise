@@ -36,22 +36,50 @@ class RestaurantsController < ApplicationController
   end
 
   def fiability_customer(customer)
-    start_date = Date.today - 90
-    start_date = start_date.beginning_of_month
-    end_date =  Date.today.end_of_month
-    date_range = start_date..end_date
-    last_four_month = customer.no_shows.select { |no_show| date_range.cover?(no_show.date_service) }
+    # start_date = Date.today - 90
+    # start_date = start_date.beginning_of_month
+    # end_date =  Date.today.end_of_month
+    # date_range = start_date..end_date
+    # last_four_month = customer.no_shows.select { |no_show| date_range.cover?(no_show.date_service) }
+    # if customer.no_shows.count < 10
+    #   first_coef = "1.0".split.push(customer.no_shows.count).join.to_f
+    # else
+    #   first_coef = "1.".split.push(customer.no_shows.count).join.to_f
+    # end
+    # if last_four_month.count < 10
+    #   second_coef = "1.0".split.push(last_four_month.count).join.to_f
+    # else
+    #   second_coef = "1.".split.push(last_four_month.count).join.to_f
+    # end
+    # return ((customer.no_shows.count * last_four_month.count) * first_coef * second_coef / 100).round(2)
+    date_last_one_week = Date.today - 7
+    date_range = date_last_one_week.beginning_of_week..date_last_one_week.end_of_week
+    no_show_last_one_week = customer.no_shows.select { |no_show| date_range.cover?(no_show.date_service) }.count
+
+    date_last_two_week = Date.today - 14
+    date_range = date_last_two_week.beginning_of_week..date_last_two_week.end_of_week
+    no_show_last_two_week = customer.no_shows.select { |no_show| date_range.cover?(no_show.date_service) }.count
+
+    date_last_three_week = Date.today - 21
+    date_range = date_last_three_week.beginning_of_week..date_last_three_week.end_of_week
+    no_show_last_three_week = customer.no_shows.select { |no_show| date_range.cover?(no_show.date_service) }.count
+
+    date_last_four_week = Date.today - 28
+    date_range = date_last_four_week.beginning_of_week..date_last_four_week.end_of_week
+    no_show_last_four_week = customer.no_shows.select { |no_show| date_range.cover?(no_show.date_service) }.count
+
+    start_date_last_four_month = Date.today - 120
+    end_date_last_four_month = Date.today - 30
+    date_range = start_date_last_four_month.beginning_of_month..end_date_last_four_month.end_of_month
+    no_show_last_four_month = customer.no_shows.select { |no_show| date_range.cover?(no_show.date_service) }.count
+
     if customer.no_shows.count < 10
       first_coef = "1.0".split.push(customer.no_shows.count).join.to_f
     else
       first_coef = "1.".split.push(customer.no_shows.count).join.to_f
     end
-    if last_four_month.count < 10
-      second_coef = "1.0".split.push(last_four_month.count).join.to_f
-    else
-      second_coef = "1.".split.push(last_four_month.count).join.to_f
-    end
-    return ((customer.no_shows.count * last_four_month.count) * first_coef * second_coef / 100).round(2)
+    score = (customer.no_shows.count * first_coef) + (no_show_last_one_week * 70) + (no_show_last_two_week * 50) + (no_show_last_three_week * 30) + (no_show_last_four_week * 15) + (no_show_last_four_month * 5)
+    return score.to_i
   end
 
   # Find and return no-shows for a specific customer in the current restaurant
