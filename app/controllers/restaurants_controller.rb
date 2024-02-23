@@ -53,7 +53,7 @@ class RestaurantsController < ApplicationController
     # end
     # return ((customer.no_shows.count * last_four_month.count) * first_coef * second_coef / 100).round(2)
     date_last_one_week = Date.today - 7
-    date_range = date_last_one_week.beginning_of_week..date_last_one_week.end_of_week
+    date_range = date_last_one_week.beginning_of_week..Date.today
     no_show_last_one_week = customer.no_shows.select { |no_show| date_range.cover?(no_show.date_service) }.count
 
     date_last_two_week = Date.today - 14
