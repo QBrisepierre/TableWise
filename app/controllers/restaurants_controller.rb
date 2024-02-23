@@ -79,7 +79,13 @@ class RestaurantsController < ApplicationController
       first_coef = "1.".split.push(customer.no_shows.count).join.to_f
     end
     score = (customer.no_shows.count * first_coef) + (no_show_last_one_week * 70) + (no_show_last_two_week * 50) + (no_show_last_three_week * 30) + (no_show_last_four_week * 15) + (no_show_last_four_month * 5)
-    return score.to_i
+    if score.to_i < 50
+      return "Peut élévé"
+    elsif score.to_i > 50 && score.to_i < 80
+      return "Risque élévé"
+    else
+      return "Risque très élévé"
+    end
   end
 
   # Find and return no-shows for a specific customer in the current restaurant
