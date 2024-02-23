@@ -11,6 +11,7 @@ export default class extends Controller {
 
   clickOutside(event) {
     this.profilTarget.classList.add("hidden")
+    this.profilTarget.classList.add("opacity-0")
   }
 
   toggle() {

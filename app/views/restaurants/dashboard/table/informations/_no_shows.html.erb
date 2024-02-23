@@ -131,7 +131,7 @@
                         <!-- Shift the first element from the array -->
                         <% no_shows_by_restaurant.shift %>
                         <!-- Iterate through remaining no-shows -->
-                        <% no_shows_by_restaurant.each do |element| %>
+                        <% no_shows_by_restaurant[0...4].each do |element| %>
                           <!-- List item for each no-show -->
                           <li class="mb-10 ms-6">            
                             <!-- Circle with yellow background for status -->
