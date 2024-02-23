@@ -1,7 +1,7 @@
 class RestaurantsController < ApplicationController
   require 'csv'
   before_action :set_restaurant, only: [:dashboard]
-  helper_method :find_customer, :find_noshows_by_restaurant, :no_shows_to_array
+  helper_method :find_customer, :find_noshows_by_restaurant, :no_shows_to_array, :fiability_customer
 
   def dashboard
     # Check if a search query is present in the params
@@ -33,6 +33,25 @@ class RestaurantsController < ApplicationController
   # Find and return a customer by their ID
   def find_customer(customer)
     Customer.find(customer)
+  end
+
+  def fiability_customer(customer)
+    start_date = Date.today - 90
+    start_date = start_date.beginning_of_month
+    end_date =  Date.today.end_of_month
+    date_range = start_date..end_date
+    last_four_month = customer.no_shows.select { |no_show| date_range.cover?(no_show.date_service) }
+    if customer.no_shows.count < 10
+      first_coef = "1.0".split.push(customer.no_shows.count).join.to_f
+    else
+      first_coef = "1.".split.push(customer.no_shows.count).join.to_f
+    end
+    if last_four_month.count < 10
+      second_coef = "1.0".split.push(last_four_month.count).join.to_f
+    else
+      second_coef = "1.".split.push(last_four_month.count).join.to_f
+    end
+    return ((customer.no_shows.count * last_four_month.count) * first_coef * second_coef / 100).round(2)
   end
 
   # Find and return no-shows for a specific customer in the current restaurant
@@ -196,6 +215,8 @@ class RestaurantsController < ApplicationController
       else
         @delta = 0
       end
+    else
+      @delta = 0
     end
   end
 end

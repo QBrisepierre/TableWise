@@ -27,7 +27,7 @@
         <!-- Customer phone number column -->
         <td class="px-4 py-4 text-sm text-gray-500  whitespace-nowrap"><%= phone %></td>
 
-        <td class="px-4 py-4 text-sm text-gray-500  whitespace-nowrap"><%= no_show.first.no_shows.last.date_service.strftime("%m/%d/%y") %></td>
+        <td class="px-4 py-4 text-sm text-gray-500  whitespace-nowrap"><%= no_show.first.no_shows.last.date_service.strftime("%d/%m/%y") %></td>
 
       </tr>
     <% end %>
