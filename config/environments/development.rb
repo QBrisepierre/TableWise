@@ -8,8 +8,6 @@ Rails.application.configure do
   # since you don't have to restart the web server when you make code changes.
   config.enable_reloading = true
 
-  config.hosts << "b6cd-83-204-67-97.ngrok-free.app"
-
   # Do not eager load code on boot.
   config.eager_load = false
 

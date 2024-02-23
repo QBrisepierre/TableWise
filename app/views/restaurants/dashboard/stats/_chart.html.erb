@@ -15,21 +15,30 @@
 </div>
 
 <div class="w-full flex items-center px-6 py-8 bg-white rounded-lg shadow-md shadow-gray-200 ">
-    <div class="flex items-center -mx-2">
-        <svg class="mx-2" width="70" height="70" viewBox="0 0 70 70" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="35" cy="35" r="35" fill="#33D69F" fill-opacity="0.07" />
-            <path d="M26 39L31 34" stroke="#21B8C7" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round" />
-            <path
-                d="M32 34C32.5523 34 33 33.5523 33 33C33 32.4477 32.5523 32 32 32C31.4477 32 31 32.4477 31 33C31 33.5523 31.4477 34 32 34Z"
-                stroke="#21B8C7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-            <path
-                d="M37 39C37.5523 39 38 38.5523 38 38C38 37.4477 37.5523 37 37 37C36.4477 37 36 37.4477 36 38C36 38.5523 36.4477 39 37 39Z"
-                stroke="#21B8C7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-            <path d="M38 37L44 31M33 34L36 37L33 34Z" stroke="#21B8C7" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round" />
-        </svg>
-
+  <div class="flex items-center -mx-2">
+    <% if @delta.positive? %>
+      <svg class="mx-2" width="70" height="70" viewBox="0 0 70 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="35" cy="35" r="35" fill="#33D69F" fill-opacity="0.07" />
+        <path d="M26 39L31 34" stroke="#21B8C7" stroke-width="2" stroke-linecap="round"
+          stroke-linejoin="round" />
+        <path
+          d="M32 34C32.5523 34 33 33.5523 33 33C33 32.4477 32.5523 32 32 32C31.4477 32 31 32.4477 31 33C31 33.5523 31.4477 34 32 34Z"
+          stroke="#21B8C7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        <path
+          d="M37 39C37.5523 39 38 38.5523 38 38C38 37.4477 37.5523 37 37 37C36.4477 37 36 37.4477 36 38C36 38.5523 36.4477 39 37 39Z"
+          stroke="#21B8C7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        <path d="M38 37L44 31M33 34L36 37L33 34Z" stroke="#21B8C7" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+    <% else %>
+      <svg class="mx-2" width="70" height="70" viewBox="0 0 70 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="35" cy="35" r="35" fill="#FF4C61" fill-opacity="0.05" />
+        <path d="M26 32L32 38L36 34L43.405 41.405" stroke="#FF4C61" stroke-width="2"
+          stroke-linecap="square" />
+        <path d="M43.405 41.405L44 42" stroke="#FF4C61" stroke-width="2" stroke-linecap="round" />
+        <path d="M44 39V42H41" stroke="#FF4C61" stroke-width="2" stroke-linecap="square" />
+      </svg>
+    <% end %>
         <div class="mx-2">
             <h3 class="text-2xl font-medium text-gray-800"><%= @no_shows_this_month.count %></h3>
             <p class="hidden md:block mt-1 text-sm text-gray-500">NoShows ajouter ce mois</p>
@@ -41,7 +50,7 @@
                     <%= @delta %>%
                 </span>
             <% else %>
-                <span class="mt-1 inline-flex items-center px-2 py-1 text-sm mr-auto font-semibold text-center align-baseline rounded-lg text-black bg-red-400 bg-opacity-50 border border-green-600">
+                <span class="mt-1 inline-flex items-center px-2 py-1 text-sm mr-auto font-semibold text-center align-baseline rounded-lg text-black bg-red-400 bg-opacity-50 border border-red-600">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 mr-1">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6L9 12.75l4.286-4.286a11.948 11.948 0 014.306 6.43l.776 2.898m0 0l3.182-5.511m-3.182 5.51l-5.511-3.181"></path>
                     </svg>
@@ -57,11 +66,17 @@
 <div class="w-full flex items-center px-6 py-8 bg-white rounded-lg shadow-md shadow-gray-200 ">
   <div class="flex items-center -mx-2">
       <svg class="mx-2" width="70" height="70" viewBox="0 0 70 70" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="35" cy="35" r="35" fill="#FF4C61" fill-opacity="0.05" />
-          <path d="M26 32L32 38L36 34L43.405 41.405" stroke="#FF4C61" stroke-width="2"
-              stroke-linecap="square" />
-          <path d="M43.405 41.405L44 42" stroke="#FF4C61" stroke-width="2" stroke-linecap="round" />
-          <path d="M44 39V42H41" stroke="#FF4C61" stroke-width="2" stroke-linecap="square" />
+        <circle cx="35" cy="35" r="35" fill="#33D69F" fill-opacity="0.07" />
+        <path d="M26 39L31 34" stroke="#21B8C7" stroke-width="2" stroke-linecap="round"
+          stroke-linejoin="round" />
+        <path
+          d="M32 34C32.5523 34 33 33.5523 33 33C33 32.4477 32.5523 32 32 32C31.4477 32 31 32.4477 31 33C31 33.5523 31.4477 34 32 34Z"
+          stroke="#21B8C7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        <path
+          d="M37 39C37.5523 39 38 38.5523 38 38C38 37.4477 37.5523 37 37 37C36.4477 37 36 37.4477 36 38C36 38.5523 36.4477 39 37 39Z"
+          stroke="#21B8C7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        <path d="M38 37L44 31M33 34L36 37L33 34Z" stroke="#21B8C7" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round" />
       </svg>
 
       <div class="mx-2">
