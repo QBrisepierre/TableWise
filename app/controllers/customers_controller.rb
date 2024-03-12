@@ -25,7 +25,7 @@ class CustomersController < ApplicationController
     @no_show.save
 
     # Redirect to the restaurant dashboard after the customer and no-show records are created
-    redirect_to dashboard_restaurant_path(current_user.restaurant.id)
+    redirect_to dashboard_restaurant_path(current_user.restaurant.id), notice: 'NoShow ajouté'
   end
 
   private

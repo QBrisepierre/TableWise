@@ -1,31 +1,20 @@
-<% no_shows_by_restaurant = find_noshows_by_restaurant(customer) %>
-<% if no_shows_by_restaurant.count < 3 %>
-  <div class="inline-flex items-center px-3 py-1 rounded-full gap-x-2 text-yellow-500 bg-yellow-100/60 ">
-    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M9 3L3 9M3 3L9 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-    <% if no_shows_by_restaurant.count == 1 %>
-      <h2 class="hidden md:block text-sm font-normal"><%= no_shows_by_restaurant.count %> NoShow</h2>
-      <h2 class="md:hidden text-sm font-normal"><%= no_shows_by_restaurant.count %></h2>
-    <% else %>
-      <h2 class="hidden md:block text-sm font-normal"><%= no_shows_by_restaurant.count %> NoShows</h2>
-      <h2 class="md:hidden text-sm font-normal"><%= no_shows_by_restaurant.count %></h2>
-    <% end %>
-  </div>
-<% elsif no_shows_by_restaurant.count < 6 %>
-  <div class="inline-flex items-center px-3 py-1 rounded-full gap-x-2 text-orange-500 bg-orange-100/60 ">
-    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M9 3L3 9M3 3L9 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-    <h2 class="hidden md:block text-sm font-normal"><%= no_shows_by_restaurant.count %> NoShows</h2>
-    <h2 class="md:hidden text-sm font-normal"><%= no_shows_by_restaurant.count %></h2>
-  </div>
+<% fiability = fiability_customer(customer) %>
+<% if fiability == "Faible" %>
+  <td class="px-4 py-4 text-sm text-gray-500  whitespace-nowrap">
+    <span class="px-2 py-1 text-sm mr-auto font-semibold text-center align-baseline rounded-lg text-black bg-yellow-100/60 bg-opacity-50 border border-yellow-500 text-yellow-500">
+      <%= fiability %>
+    </span>
+  </td>
+<% elsif fiability == "Risque élévé" %>
+  <td class="px-4 py-4 text-sm text-gray-500  whitespace-nowrap">
+    <span class="px-2 py-1 text-sm mr-auto font-normal text-center align-baseline rounded-lg bg-orange-100/60 bg-opacity-50 border border-orange-500 text-orange-500">
+        <%= fiability %>
+    </span>
+  </td>
 <% else %>
-  <div class="inline-flex items-center px-3 py-1 rounded-full gap-x-2 text-red-500 bg-red-100/60 ">
-    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M9 3L3 9M3 3L9 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-    <h2 class="hidden md:block text-sm font-normal"><%= no_shows_by_restaurant.count %> NoShows</h2>
-    <h2 class="md:hidden text-sm font-normal"><%= no_shows_by_restaurant.count %></h2>
-  </div>
+  <td class="px-4 py-4 text-sm text-gray-500  whitespace-nowrap">
+    <span class="px-2 py-1 text-sm mr-auto font-normal text-center align-baseline rounded-lg text-black bg-red-100/60 bg-opacity-50 border border-red-500 text-red-500">
+        <%= fiability %>
+    </span>
+  </td>
 <% end %>

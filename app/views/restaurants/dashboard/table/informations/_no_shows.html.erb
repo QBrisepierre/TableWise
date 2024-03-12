@@ -20,46 +20,19 @@
             <% @count -= 1 %>
           </div>
         </td>
-        <!-- Badge column with customer information -->
-        <td class="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
-          <!-- Render badge for the customer -->
-          <%= render "restaurants/dashboard/table/badge", customer: customer %>
-          </div>
-        </td>
         <!-- Customer information columns -->
         <td class="px-4 py-4 text-sm text-gray-500 whitespace-nowrap">
           <!-- Customer name and email -->
           <div>
-            <h2 class="text-sm font-medium text-gray-800 "><%= customer.name %></h2>
+            <h2 class="text-sm font-medium text-gray-500 "><%= customer.name %></h2>
             <p class="text-xs font-normal text-gray-600 "><%= customer.email %></p>
           </div>
           </div>
         </td>
         <!-- Customer phone number column -->
         <td class="px-4 py-4 text-sm text-gray-500  whitespace-nowrap"><%= customer.phone %></td>
-        <% fiability = fiability_customer(customer) %>
-        <% if fiability == "Peut élévé" %>
-          <td class="px-4 py-4 text-sm text-gray-500  whitespace-nowrap">
+          <%= render "restaurants/dashboard/table/badge", customer: customer %>
 
-              <span class="mt-1 inline-flex items-center px-2 py-1 text-sm mr-auto font-semibold text-center align-baseline rounded-lg text-black bg-green-400 bg-opacity-50 border border-green-600">
-                  <%= fiability %>
-              </span>
-              </td>
-        <% elsif fiability == "Risque élévé" %>
-          <td class="px-4 py-4 text-sm text-gray-500  whitespace-nowrap">
-
-              <span class="mt-1 inline-flex items-center px-2 py-1 text-sm mr-auto font-semibold text-center align-baseline rounded-lg text-black bg-orange-400 bg-opacity-50 border border-orange-600">
-                  <%= fiability %>
-              </span>
-              </td>
-        <% else %>
-        <td class="px-4 py-4 text-sm text-gray-500  whitespace-nowrap">
-
-                <span class="mt-1 inline-flex items-center px-2 py-1 text-sm mr-auto font-semibold text-center align-baseline rounded-lg text-black bg-red-400 bg-opacity-50 border border-red-600">
-                    <%= fiability %>
-                </span>
-                </td>
-            <% end %>
         <!-- Action column with hidden and visible options -->
         <td class="px-4 py-4 text-sm whitespace-nowrap">
           <!-- Hidden actions for small screens -->
@@ -166,9 +139,9 @@
                               </svg>
                             </span>
                             <!-- Date details for each no-show -->
-                            <h3 class="flex items-center mb-1 text-lg font-semibold text-gray-900"><%= element.date_service.strftime('%m/%d/%Y') %></h3>
+                            <h3 class="flex items-center mb-1 text-lg font-semibold text-gray-900"><%= element.date_service.strftime('%d/%m/%Y') %></h3>
                             <!-- Block for recorded date of the no-show -->
-                            <p class="block mb-2 text-sm font-normal leading-none text-gray-400">Enregistrée le : <%= element.created_at.strftime('%m/%d/%Y') %></p>
+                            <p class="block mb-2 text-sm font-normal leading-none text-gray-400">Enregistrée le : <%= element.created_at.strftime('%d/%m/%Y') %></p>
                           </li>
                         <% end %>   
                       </ol>

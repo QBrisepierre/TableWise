@@ -21,13 +21,12 @@
         <!-- Badge column with customer information -->
         <td class="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
           <!-- Render badge for the customer -->
-          <%= render "restaurants/search/table/badge_phone", no_show: no_show %>
-          </div>
+          <%= render "restaurants/search/table/badge_phone", no_show: no_show.first %>
         </td>
         <!-- Customer phone number column -->
-        <td class="px-4 py-4 text-sm text-gray-500  whitespace-nowrap"><%= phone %></td>
+        <td class="px-4 py-4 text-sm text-gray-500 whitespace-nowrap"><%= phone %></td>
 
-        <td class="px-4 py-4 text-sm text-gray-500  whitespace-nowrap"><%= no_show.first.no_shows.last.date_service.strftime("%d/%m/%y") %></td>
+        <td class="px-4 py-4 text-sm text-gray-500 whitespace-nowrap"><%= no_show.first.no_shows.last.date_service.strftime("%d/%m/%y") %></td>
 
       </tr>
     <% end %>

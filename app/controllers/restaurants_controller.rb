@@ -80,7 +80,7 @@ class RestaurantsController < ApplicationController
     end
     score = (customer.no_shows.count * first_coef) + (no_show_last_one_week * 70) + (no_show_last_two_week * 50) + (no_show_last_three_week * 30) + (no_show_last_four_week * 15) + (no_show_last_four_month * 5)
     if score.to_i < 50
-      return "Peut élévé"
+      return "Faible"
     elsif score.to_i > 50 && score.to_i < 80
       return "Risque élévé"
     else
@@ -108,6 +108,15 @@ class RestaurantsController < ApplicationController
         @phone[phone] = Customer.search_by_email_and_phone(phone) if Customer.search_by_email_and_phone(phone).present?
       end
       @count = @phone.count + 1
+      if @count == 1
+        flash[:alert] = "Aucun noshow trouvé"
+      else
+        if @count < 3
+          flash[:notice] =  "#{@count - 1} noshow trouvé"
+        else
+          flash[:notice] =  "#{@count - 1} noshow trouvés"
+        end
+      end
     end
     if params[:query].present?
       # If searching, retrieve customers with no-shows based on the query
@@ -116,6 +125,15 @@ class RestaurantsController < ApplicationController
       @customers = Customer.search_by_email_and_phone(params[:query])
       # Select only customer's have no_show fo this restaurant
       @count = @customers.count + 1
+      if @count == 1
+        flash[:alert] = "Aucun noshow trouvé"
+      else
+        if @count < 3
+          flash[:notice] =  "#{@count - 1} noshow trouvé"
+        else
+          flash[:notice] =  "#{@count - 1} noshow trouvés"
+        end
+      end
     end
   end
 
